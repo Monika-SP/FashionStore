@@ -5,6 +5,7 @@ services:
     runtime: image
     image:
       url: docker.io/mysql:8.0
+    plan: starter
 
     envVars:
       - key: MYSQL_DATABASE
@@ -23,3 +24,41 @@ services:
       name: fashionstore-mysql-data
       mountPath: /var/lib/mysql
       sizeGB: 10
+
+
+  - type: web
+    name: FashionStore
+    runtime: python
+    plan: free
+    region: ohio
+
+    buildCommand: pip install -r requirements.txt && bash build.sh
+    startCommand: gunicorn config.wsgi:application
+
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true
+
+      - key: DEBUG
+        value: "False"
+
+      - key: DB_NAME
+        value: fashion_store
+
+      - key: DB_USER
+        value: fashionstore
+
+      - key: DB_PASSWORD
+        fromService:
+          name: fashionstore-mysql
+          type: pserv
+          envVarKey: MYSQL_PASSWORD
+
+      - key: DB_HOST
+        fromService:
+          name: fashionstore-mysql
+          type: pserv
+          property: host
+
+      - key: DB_PORT
+        value: "3306"
