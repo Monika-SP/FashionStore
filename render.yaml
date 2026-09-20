@@ -1,0 +1,25 @@
+services:
+
+  - type: pserv
+    name: fashionstore-mysql
+    runtime: image
+    image:
+      url: docker.io/mysql:8.0
+
+    envVars:
+      - key: MYSQL_DATABASE
+        value: fashion_store
+
+      - key: MYSQL_USER
+        value: fashionstore
+
+      - key: MYSQL_PASSWORD
+        generateValue: true
+
+      - key: MYSQL_ROOT_PASSWORD
+        generateValue: true
+
+    disk:
+      name: fashionstore-mysql-data
+      mountPath: /var/lib/mysql
+      sizeGB: 10
