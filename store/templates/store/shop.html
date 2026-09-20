@@ -1,0 +1,1460 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Collection | FashionStore
+    </title>
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Sacramento&display=swap"
+          rel="stylesheet">
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+            background: #fcfaf7;
+            color: #211d1d;
+            font-family: "DM Sans", sans-serif;
+        }
+
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        .navbar {
+            min-height: 88px;
+
+            padding: 0 5%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            background: #fffdfb;
+
+            border-bottom: 1px solid #eee5df;
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 100;
+        }
+
+
+        .logo {
+            font-family: "Playfair Display", serif;
+
+            font-size: 34px;
+
+            letter-spacing: -2px;
+        }
+
+
+        .logo span {
+            font-family: "Sacramento", cursive;
+
+            color: #c34d72;
+
+            font-size: 45px;
+
+            margin-left: 4px;
+        }
+
+
+        .nav-links {
+            display: flex;
+
+            gap: 30px;
+        }
+
+
+        .nav-links a {
+            font-size: 14px;
+
+            transition: .3s;
+        }
+
+
+        .nav-links a:hover {
+            color: #c34d72;
+        }
+
+
+        .nav-icons {
+            display: flex;
+
+            gap: 23px;
+
+            font-size: 22px;
+
+            align-items: center;
+        }
+
+
+        .nav-icons a {
+            transition: .3s;
+        }
+
+
+        .nav-icons a:hover {
+            color: #c34d72;
+        }
+
+
+        .cart-link {
+            display: flex;
+
+            align-items: center;
+
+            gap: 5px;
+        }
+
+
+        .cart-count {
+            font-size: 11px;
+
+            font-weight: 600;
+
+            color: #c34d72;
+        }
+
+
+        .wishlist-link {
+            display: flex;
+
+            align-items: center;
+
+            gap: 4px;
+        }
+
+
+        .wishlist-count {
+            font-size: 11px;
+
+            font-weight: 600;
+
+            color: #c34d72;
+        }
+
+
+        /* =========================
+           PAGE HEADER
+        ========================= */
+
+        .page-header {
+            background: #f3e7e1;
+
+            text-align: center;
+
+            padding: 80px 7% 70px;
+
+            position: relative;
+
+            overflow: hidden;
+        }
+
+
+        .page-header::before {
+            content: "♡";
+
+            position: absolute;
+
+            left: 13%;
+
+            top: 30px;
+
+            font-size: 45px;
+
+            color: #c34d72;
+        }
+
+
+        .page-header::after {
+            content: "♡";
+
+            position: absolute;
+
+            right: 13%;
+
+            bottom: 25px;
+
+            font-size: 36px;
+
+            color: #c34d72;
+        }
+
+
+        .page-header small {
+            color: #c34d72;
+
+            letter-spacing: 4px;
+
+            font-size: 11px;
+
+            font-weight: 600;
+        }
+
+
+        .page-header h1 {
+            font-family: "Playfair Display", serif;
+
+            font-size: clamp(55px, 7vw, 85px);
+
+            font-weight: 400;
+
+            margin: 15px 0;
+        }
+
+
+        .page-header h1 span {
+            font-family: "Sacramento", cursive;
+
+            color: #c34d72;
+        }
+
+
+        .page-header p {
+            color: #71655f;
+
+            font-size: 15px;
+
+            line-height: 1.7;
+        }
+
+
+        /* =========================
+           SEARCH
+        ========================= */
+
+        .search-area {
+            padding: 45px 6% 10px;
+
+            display: flex;
+
+            justify-content: center;
+        }
+
+
+        .search-form {
+            width: min(700px, 100%);
+
+            height: 55px;
+
+            display: flex;
+
+            align-items: center;
+
+            border: 1px solid #ded3cc;
+
+            background: white;
+
+            border-radius: 40px;
+
+            overflow: hidden;
+        }
+
+
+        .search-icon {
+            padding-left: 20px;
+
+            font-size: 20px;
+
+            color: #8f817a;
+        }
+
+
+        .search-form input {
+            flex: 1;
+
+            height: 100%;
+
+            border: none;
+
+            outline: none;
+
+            padding: 0 15px;
+
+            font-family: "DM Sans", sans-serif;
+
+            font-size: 14px;
+
+            background: transparent;
+        }
+
+
+        .search-button {
+            height: 100%;
+
+            border: none;
+
+            background: #c34d72;
+
+            color: white;
+
+            padding: 0 28px;
+
+            font-family: "DM Sans", sans-serif;
+
+            cursor: pointer;
+
+            transition: .3s;
+        }
+
+
+        .search-button:hover {
+            background: #a83f61;
+        }
+
+
+        .search-result {
+            text-align: center;
+
+            margin-top: 15px;
+
+            color: #81756e;
+
+            font-size: 13px;
+        }
+
+
+        .clear-search {
+            color: #c34d72;
+
+            margin-left: 8px;
+
+            text-decoration: underline;
+        }
+
+
+        /* =========================
+           CATEGORY FILTERS
+        ========================= */
+
+        .filters {
+            padding: 35px 6%;
+
+            display: flex;
+
+            justify-content: center;
+
+            gap: 12px;
+
+            flex-wrap: wrap;
+        }
+
+
+        .filter {
+            padding: 11px 22px;
+
+            border: 1px solid #ded3cc;
+
+            border-radius: 30px;
+
+            background: white;
+
+            font-size: 12px;
+
+            transition: .3s;
+        }
+
+
+        .filter:hover {
+            background: #c34d72;
+
+            color: white;
+
+            border-color: #c34d72;
+        }
+
+
+        .filter.active {
+            background: #c34d72;
+
+            color: white;
+
+            border-color: #c34d72;
+        }
+
+
+        /* =========================
+           PRODUCTS
+        ========================= */
+
+        .products-section {
+            padding: 20px 6% 90px;
+        }
+
+
+        .products-top {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 28px;
+        }
+
+
+        .products-top h2 {
+            font-family: "Playfair Display", serif;
+
+            font-size: 30px;
+
+            font-weight: 400;
+        }
+
+
+        .products-top span {
+            color: #8d817b;
+
+            font-size: 12px;
+        }
+
+
+        .product-grid {
+            display: grid;
+
+            grid-template-columns: repeat(4, 1fr);
+
+            gap: 38px 22px;
+        }
+
+
+        .product {
+            position: relative;
+        }
+
+
+        .product-link {
+            display: block;
+        }
+
+
+        .product-image {
+            aspect-ratio: .78;
+
+            background: #eee7e2;
+
+            overflow: hidden;
+
+            position: relative;
+        }
+
+
+        .product-image img {
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover;
+
+            display: block;
+
+            transition: .7s ease;
+        }
+
+
+        .product:hover .product-image img {
+            transform: scale(1.055);
+        }
+
+
+        /* =========================
+           WISHLIST HEART
+        ========================= */
+
+        .wishlist-form {
+            position: absolute;
+
+            top: 12px;
+
+            right: 12px;
+
+            z-index: 10;
+        }
+
+
+        .heart {
+            width: 40px;
+
+            height: 40px;
+
+            border: none;
+
+            background: rgba(255, 255, 255, .95);
+
+            border-radius: 50%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-family: "Playfair Display", serif;
+
+            font-size: 23px;
+
+            color: #c34d72;
+
+            cursor: pointer;
+
+            transition: .3s;
+
+            box-shadow: 0 4px 12px rgba(0, 0, 0, .06);
+        }
+
+
+        .heart:hover {
+            transform: scale(1.1);
+
+            background: #c34d72;
+
+            color: white;
+        }
+
+
+        /* =========================
+           PRODUCT INFO
+        ========================= */
+
+        .product-info {
+            padding-top: 14px;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            gap: 12px;
+        }
+
+
+        .product-info small {
+            color: #988c85;
+
+            font-size: 10px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1.4px;
+        }
+
+
+        .product-info h3 {
+            font-size: 14px;
+
+            font-weight: 500;
+
+            line-height: 1.45;
+
+            margin-top: 5px;
+        }
+
+
+        .product-price {
+            font-size: 14px;
+
+            font-weight: 600;
+
+            white-space: nowrap;
+        }
+
+
+        /* =========================
+           EMPTY SEARCH
+        ========================= */
+
+        .empty {
+            text-align: center;
+
+            padding: 80px 20px;
+        }
+
+
+        .empty-icon {
+            font-size: 48px;
+
+            color: #c34d72;
+
+            margin-bottom: 12px;
+        }
+
+
+        .empty h2 {
+            font-family: "Playfair Display", serif;
+
+            font-size: 42px;
+
+            font-weight: 400;
+        }
+
+
+        .empty p {
+            color: #81756e;
+
+            margin-top: 10px;
+        }
+
+
+        .empty-button {
+            display: inline-block;
+
+            margin-top: 25px;
+
+            padding: 13px 27px;
+
+            background: #c34d72;
+
+            color: white;
+
+            border-radius: 30px;
+
+            font-size: 12px;
+        }
+
+
+        /* =========================
+           EDITORIAL STRIP
+        ========================= */
+
+        .editorial {
+            margin: 0 6% 90px;
+
+            padding: 60px 8%;
+
+            background: #ead9d1;
+
+            text-align: center;
+        }
+
+
+        .editorial small {
+            color: #a83f61;
+
+            letter-spacing: 3px;
+
+            font-size: 10px;
+        }
+
+
+        .editorial h2 {
+            font-family: "Playfair Display", serif;
+
+            font-size: clamp(35px, 5vw, 58px);
+
+            font-weight: 400;
+
+            margin-top: 15px;
+        }
+
+
+        .editorial h2 span {
+            font-family: "Sacramento", cursive;
+
+            color: #c34d72;
+        }
+
+
+        .editorial p {
+            max-width: 570px;
+
+            margin: 15px auto 0;
+
+            color: #746760;
+
+            font-size: 14px;
+
+            line-height: 1.8;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            background: #211d1d;
+
+            color: white;
+
+            padding: 70px 6% 25px;
+
+            text-align: center;
+        }
+
+
+        footer p {
+            color: #aaa09b;
+
+            margin-top: 15px;
+        }
+
+
+        .footer-links {
+            display: flex;
+
+            justify-content: center;
+
+            gap: 30px;
+
+            margin-top: 25px;
+
+            color: #c7bdb8;
+
+            font-size: 13px;
+
+            flex-wrap: wrap;
+        }
+
+
+        .copyright {
+            margin-top: 35px;
+
+            padding-top: 20px;
+
+            border-top: 1px solid #3b3533;
+
+            font-size: 11px;
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media(max-width:1050px) {
+
+            .product-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+        }
+
+
+        @media(max-width:750px) {
+
+            .navbar {
+                min-height: 75px;
+            }
+
+
+            .nav-links {
+                display: none;
+            }
+
+
+            .logo {
+                font-size: 28px;
+            }
+
+
+            .logo span {
+                font-size: 37px;
+            }
+
+
+            .nav-icons {
+                gap: 15px;
+
+                font-size: 20px;
+            }
+
+
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+
+                gap: 28px 13px;
+            }
+
+
+            .products-section {
+                padding-left: 5%;
+
+                padding-right: 5%;
+            }
+
+
+            .editorial {
+                margin-left: 5%;
+
+                margin-right: 5%;
+            }
+
+        }
+
+
+        @media(max-width:500px) {
+
+            .page-header {
+                padding: 65px 7%;
+            }
+
+
+            .page-header h1 {
+                font-size: 55px;
+            }
+
+
+            .search-area {
+                padding-left: 5%;
+
+                padding-right: 5%;
+            }
+
+
+            .search-button {
+                padding: 0 18px;
+            }
+
+
+            .search-form input {
+                min-width: 0;
+            }
+
+
+            .products-top h2 {
+                font-size: 25px;
+            }
+
+
+            .product-info {
+                display: block;
+            }
+
+
+            .product-price {
+                display: block;
+
+                margin-top: 6px;
+            }
+
+
+            .heart {
+                width: 36px;
+
+                height: 36px;
+
+                font-size: 21px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     NAVBAR
+========================= -->
+
+<header class="navbar">
+
+
+    <a href="{% url 'home' %}"
+       class="logo">
+
+        Fashion<span>Store</span>
+
+    </a>
+
+
+    <nav class="nav-links">
+
+        <a href="{% url 'home' %}">
+            Home
+        </a>
+
+        <a href="{% url 'shop' %}?category=Women">
+            Women
+        </a>
+
+        <a href="{% url 'shop' %}?category=Men">
+            Men
+        </a>
+
+        <a href="{% url 'shop' %}?category=Accessories">
+            Accessories
+        </a>
+
+        <a href="{% url 'shop' %}">
+            Collection
+        </a>
+
+        <a href="{% url 'home' %}#about">
+            About
+        </a>
+
+    </nav>
+
+
+    <div class="nav-icons">
+
+
+        <a href="#search"
+           title="Search">
+
+            ⌕
+
+        </a>
+
+
+        {% if user.is_authenticated %}
+
+
+            <a href="{% url 'wishlist' %}"
+               class="wishlist-link"
+               title="Wishlist">
+
+                ♡
+
+                {% if wishlist_count > 0 %}
+
+                    <span class="wishlist-count">
+                        {{ wishlist_count }}
+                    </span>
+
+                {% endif %}
+
+            </a>
+
+
+            <a href="{% url 'profile' %}"
+               title="Profile">
+
+                ♙
+
+            </a>
+
+
+            <a href="{% url 'cart' %}"
+               class="cart-link"
+               title="Shopping Bag">
+
+                ♧
+
+                {% if cart_count > 0 %}
+
+                    <span class="cart-count">
+                        {{ cart_count }}
+                    </span>
+
+                {% endif %}
+
+            </a>
+
+
+        {% else %}
+
+
+            <a href="{% url 'login' %}"
+               title="Login">
+
+                ♙
+
+            </a>
+
+
+            <a href="{% url 'login' %}"
+               title="Shopping Bag">
+
+                ♧
+
+            </a>
+
+
+        {% endif %}
+
+
+    </div>
+
+</header>
+
+
+<!-- =========================
+     PAGE HEADER
+========================= -->
+
+<section class="page-header">
+
+
+    <small>
+        FASHIONSTORE COLLECTION
+    </small>
+
+
+    <h1>
+
+        Discover
+        <span>your style.</span>
+
+    </h1>
+
+
+    <p>
+
+        Thoughtfully selected pieces
+        for every mood and every day.
+
+    </p>
+
+
+</section>
+
+
+<!-- =========================
+     SEARCH
+========================= -->
+
+<section class="search-area"
+         id="search">
+
+
+    <form method="GET"
+          action="{% url 'shop' %}"
+          class="search-form">
+
+
+        <div class="search-icon">
+            ⌕
+        </div>
+
+
+        <input
+            type="text"
+            name="q"
+            value="{{ search_query }}"
+            placeholder="Search dresses, shirts, bags..."
+            autocomplete="off"
+        >
+
+
+        <button type="submit"
+                class="search-button">
+
+            Search
+
+        </button>
+
+
+    </form>
+
+
+</section>
+
+
+{% if search_query %}
+
+    <div class="search-result">
+
+        Showing results for
+        <strong>"{{ search_query }}"</strong>
+
+
+        <a href="{% url 'shop' %}"
+           class="clear-search">
+
+            Clear search
+
+        </a>
+
+    </div>
+
+{% endif %}
+
+
+<!-- =========================
+     FILTERS
+========================= -->
+
+<div class="filters">
+
+
+    <a href="{% url 'shop' %}"
+       class="filter {% if not selected_category %}active{% endif %}">
+
+        All
+
+    </a>
+
+
+    <a href="{% url 'shop' %}?category=Women"
+       class="filter {% if selected_category|lower == 'women'|lower %}active{% endif %}">
+
+        Women
+
+    </a>
+
+
+    <a href="{% url 'shop' %}?category=Men"
+       class="filter {% if selected_category|lower == 'men'|lower %}active{% endif %}">
+
+        Men
+
+    </a>
+
+
+    <a href="{% url 'shop' %}?category=Accessories"
+       class="filter {% if selected_category|lower == 'accessories'|lower %}active{% endif %}">
+
+        Accessories
+
+    </a>
+
+
+</div>
+
+
+<!-- =========================
+     PRODUCTS
+========================= -->
+
+<section class="products-section">
+
+
+    <div class="products-top">
+
+
+        <h2>
+
+            {% if search_query %}
+
+                Search results
+
+            {% elif selected_category %}
+
+                {{ selected_category }}
+
+            {% else %}
+
+                All pieces
+
+            {% endif %}
+
+        </h2>
+
+
+        <span>
+
+            {{ products|length }} piece{{ products|length|pluralize }}
+
+        </span>
+
+
+    </div>
+
+
+    {% if products %}
+
+
+        <div class="product-grid">
+
+
+            {% for product in products %}
+
+
+                <div class="product">
+
+
+                    <!-- PRODUCT LINK -->
+
+                    <a href="{% url 'product_detail' product.id %}"
+                       class="product-link">
+
+
+                        <div class="product-image">
+
+
+                            {% if product.image_url %}
+
+                                <img
+                                    src="{{ product.image_url }}"
+                                    alt="{{ product.name }}"
+                                    loading="lazy"
+                                >
+
+                            {% endif %}
+
+
+                        </div>
+
+
+                        <div class="product-info">
+
+
+                            <div>
+
+
+                                <small>
+
+                                    {{ product.category.name }}
+
+                                </small>
+
+
+                                <h3>
+
+                                    {{ product.name }}
+
+                                </h3>
+
+
+                            </div>
+
+
+                            <div class="product-price">
+
+                                ₹{{ product.price }}
+
+                            </div>
+
+
+                        </div>
+
+
+                    </a>
+
+
+                    <!-- WISHLIST HEART -->
+
+                    {% if user.is_authenticated %}
+
+
+                        <form method="POST"
+                              action="{% url 'toggle_wishlist' product.id %}"
+                              class="wishlist-form">
+
+
+                            {% csrf_token %}
+
+
+                            <button type="submit"
+                                    class="heart"
+                                    title="{% if product.id in wishlist_ids %}Remove from wishlist{% else %}Add to wishlist{% endif %}">
+
+
+                                {% if product.id in wishlist_ids %}
+
+                                    ♥
+                                
+                                {% else %}
+
+                                    ♡
+
+                                {% endif %}
+
+
+                            </button>
+
+
+                        </form>
+
+
+                    {% else %}
+
+
+                        <a href="{% url 'login' %}"
+                           class="wishlist-form"
+                           title="Login to save">
+
+
+                            <span class="heart">
+
+                                ♡
+
+                            </span>
+
+
+                        </a>
+
+
+                    {% endif %}
+
+
+                </div>
+
+
+            {% endfor %}
+
+
+        </div>
+
+
+    {% else %}
+
+
+        <div class="empty">
+
+
+            <div class="empty-icon">
+                ♡
+            </div>
+
+
+            <h2>
+                Nothing found.
+            </h2>
+
+
+            <p>
+                Try searching for another style or category.
+            </p>
+
+
+            <a href="{% url 'shop' %}"
+               class="empty-button">
+
+                View All Collection
+
+            </a>
+
+
+        </div>
+
+
+    {% endif %}
+
+
+</section>
+
+
+<!-- =========================
+     EDITORIAL STRIP
+========================= -->
+
+<section class="editorial">
+
+
+    <small>
+        THE FASHIONSTORE EDIT
+    </small>
+
+
+    <h2>
+
+        Pieces you'll
+        <span>love wearing.</span>
+
+    </h2>
+
+
+    <p>
+
+        From effortless everyday essentials
+        to statement pieces, discover styles
+        designed to feel naturally yours.
+
+    </p>
+
+
+</section>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+
+    <div class="logo">
+
+        Fashion<span>Store</span>
+
+    </div>
+
+
+    <p>
+
+        Style that feels like you. ♡
+
+    </p>
+
+
+    <div class="footer-links">
+
+
+        <a href="{% url 'shop' %}?category=Women">
+            Women
+        </a>
+
+
+        <a href="{% url 'shop' %}?category=Men">
+            Men
+        </a>
+
+
+        <a href="{% url 'shop' %}?category=Accessories">
+            Accessories
+        </a>
+
+
+        <a href="{% url 'shop' %}">
+            Collection
+        </a>
+
+
+        {% if user.is_authenticated %}
+
+            <a href="{% url 'wishlist' %}">
+                Wishlist
+            </a>
+
+            <a href="{% url 'my_orders' %}">
+                My Orders
+            </a>
+
+        {% endif %}
+
+
+    </div>
+
+
+    <p class="copyright">
+
+        © 2026 FashionStore · Made with ♡
+
+    </p>
+
+
+</footer>
+
+
+</body>
+
+</html>

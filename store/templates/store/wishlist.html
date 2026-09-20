@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Wishlist | FashionStore</title>
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&family=Sacramento&display=swap"
+          rel="stylesheet">
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+            font-family: "DM Sans", sans-serif;
+            background: #fffaf7;
+            color: #302a28;
+        }
+
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+
+        /* NAVBAR */
+
+        .navbar {
+            height: 82px;
+
+            background: rgba(255, 250, 247, 0.97);
+
+            border-bottom: 1px solid #eadfd9;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 6%;
+
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+
+        .logo {
+            font-family: "Playfair Display", serif;
+            font-size: 25px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+
+        .logo span {
+            font-family: "Sacramento", cursive;
+
+            color: #c98291;
+
+            font-size: 32px;
+        }
+
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
+
+
+        .nav-links a {
+            font-size: 14px;
+            color: #5e5551;
+
+            transition: 0.3s;
+        }
+
+
+        .nav-links a:hover {
+            color: #b9687b;
+        }
+
+
+        .nav-icons {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+
+        .nav-icon {
+            position: relative;
+
+            font-size: 20px;
+
+            transition: 0.3s;
+        }
+
+
+        .nav-icon:hover {
+            transform: translateY(-2px);
+        }
+
+
+        .count {
+            position: absolute;
+
+            top: -8px;
+            right: -10px;
+
+            width: 18px;
+            height: 18px;
+
+            background: #c97889;
+
+            color: white;
+
+            border-radius: 50%;
+
+            font-size: 10px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+
+        /* HEADER */
+
+        .page-header {
+            max-width: 1200px;
+
+            margin: auto;
+
+            padding: 65px 25px 40px;
+        }
+
+
+        .eyebrow {
+            font-family: "Sacramento", cursive;
+
+            color: #c77d8d;
+
+            font-size: 30px;
+
+            margin-bottom: 4px;
+        }
+
+
+        .page-header h1 {
+            font-family: "Playfair Display", serif;
+
+            font-size: 44px;
+
+            font-weight: 600;
+
+            margin-bottom: 10px;
+        }
+
+
+        .page-header p {
+            color: #7c706a;
+
+            font-size: 15px;
+        }
+
+
+        /* PRODUCTS */
+
+        .wishlist-section {
+            max-width: 1200px;
+
+            margin: auto;
+
+            padding: 0 25px 80px;
+        }
+
+
+        .wishlist-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 24px;
+        }
+
+
+        .product-card {
+            background: white;
+
+            border: 1px solid #eadfd9;
+
+            border-radius: 20px;
+
+            overflow: hidden;
+
+            position: relative;
+
+            box-shadow:
+                0 8px 25px
+                rgba(72, 50, 43, 0.04);
+
+            transition: 0.35s;
+
+            animation: fadeUp 0.5s ease both;
+        }
+
+
+        .product-card:hover {
+            transform: translateY(-5px);
+
+            box-shadow:
+                0 18px 38px
+                rgba(72, 50, 43, 0.09);
+        }
+
+
+        @keyframes fadeUp {
+
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        }
+
+
+        .product-image {
+            display: block;
+
+            height: 350px;
+
+            overflow: hidden;
+
+            background: #f5eeeb;
+
+            position: relative;
+        }
+
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            transition: transform 0.5s ease;
+        }
+
+
+        .product-card:hover
+        .product-image img {
+            transform: scale(1.05);
+        }
+
+
+        .remove-wishlist {
+            position: absolute;
+
+            top: 14px;
+            right: 14px;
+
+            width: 38px;
+            height: 38px;
+
+            border-radius: 50%;
+
+            background: rgba(255, 255, 255, 0.95);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            color: #b9687b;
+
+            font-size: 21px;
+
+            box-shadow:
+                0 5px 15px
+                rgba(60, 40, 35, 0.10);
+
+            transition: 0.3s;
+
+            z-index: 5;
+        }
+
+
+        .remove-wishlist:hover {
+            background: #c97889;
+
+            color: white;
+
+            transform: scale(1.08);
+        }
+
+
+        .product-info {
+            padding: 18px 18px 20px;
+        }
+
+
+        .product-category {
+            font-size: 10px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1.4px;
+
+            color: #b77a86;
+
+            margin-bottom: 6px;
+        }
+
+
+        .product-name {
+            font-family: "Playfair Display", serif;
+
+            font-size: 19px;
+
+            font-weight: 600;
+
+            margin-bottom: 7px;
+        }
+
+
+        .product-price {
+            font-size: 14px;
+
+            font-weight: 600;
+
+            color: #4b403c;
+
+            margin-bottom: 15px;
+        }
+
+
+        .view-product {
+            display: inline-flex;
+
+            align-items: center;
+            justify-content: center;
+
+            width: 100%;
+
+            padding: 11px;
+
+            border-radius: 25px;
+
+            border: 1px solid #dccbc5;
+
+            background: white;
+
+            color: #514743;
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+            transition: 0.3s;
+        }
+
+
+        .view-product:hover {
+            background: #c97889;
+
+            border-color: #c97889;
+
+            color: white;
+        }
+
+
+        /* EMPTY */
+
+        .empty-state {
+            background: white;
+
+            border: 1px solid #eadfd9;
+
+            border-radius: 25px;
+
+            text-align: center;
+
+            padding: 75px 25px;
+
+            box-shadow:
+                0 10px 30px
+                rgba(72, 50, 43, 0.04);
+        }
+
+
+        .empty-icon {
+            width: 86px;
+            height: 86px;
+
+            margin: 0 auto 25px;
+
+            border-radius: 50%;
+
+            background: #f9e8eb;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            color: #c97889;
+
+            font-size: 38px;
+        }
+
+
+        .empty-state h2 {
+            font-family: "Playfair Display", serif;
+
+            font-size: 30px;
+
+            margin-bottom: 10px;
+        }
+
+
+        .empty-state p {
+            color: #81746e;
+
+            font-size: 14px;
+
+            margin-bottom: 26px;
+        }
+
+
+        .shop-btn {
+            display: inline-block;
+
+            padding: 13px 27px;
+
+            border-radius: 28px;
+
+            background: #c97889;
+
+            color: white;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            transition: 0.3s;
+        }
+
+
+        .shop-btn:hover {
+            background: #ae6173;
+
+            transform: translateY(-2px);
+        }
+
+
+        /* FOOTER */
+
+        footer {
+            border-top: 1px solid #eadfd9;
+
+            padding: 35px 6%;
+
+            text-align: center;
+
+            color: #8a7d77;
+
+            font-size: 13px;
+        }
+
+
+        footer strong {
+            color: #5b504c;
+        }
+
+
+        /* TABLET */
+
+        @media (max-width: 1050px) {
+
+            .wishlist-grid {
+                grid-template-columns:
+                    repeat(3, 1fr);
+            }
+
+        }
+
+
+        /* MOBILE */
+
+        @media (max-width: 850px) {
+
+            .nav-links {
+                display: none;
+            }
+
+
+            .navbar {
+                padding: 0 5%;
+            }
+
+
+            .wishlist-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+
+                gap: 16px;
+            }
+
+
+            .product-image {
+                height: 300px;
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .page-header {
+                padding: 48px 20px 32px;
+            }
+
+
+            .page-header h1 {
+                font-size: 35px;
+            }
+
+
+            .wishlist-section {
+                padding: 0 15px 60px;
+            }
+
+
+            .wishlist-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+
+                gap: 12px;
+            }
+
+
+            .product-card {
+                border-radius: 15px;
+            }
+
+
+            .product-image {
+                height: 230px;
+            }
+
+
+            .product-info {
+                padding: 14px;
+            }
+
+
+            .product-name {
+                font-size: 16px;
+            }
+
+
+            .product-price {
+                font-size: 13px;
+            }
+
+
+            .remove-wishlist {
+                width: 34px;
+                height: 34px;
+
+                top: 10px;
+                right: 10px;
+
+                font-size: 18px;
+            }
+
+
+            .view-product {
+                font-size: 12px;
+
+                padding: 9px;
+            }
+
+
+            .logo {
+                font-size: 22px;
+            }
+
+
+            .logo span {
+                font-size: 29px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- NAVBAR -->
+
+    <nav class="navbar">
+
+
+        <a href="{% url 'home' %}"
+           class="logo">
+
+            Fashion<span>Store</span>
+
+        </a>
+
+
+
+        <div class="nav-links">
+
+            <a href="{% url 'home' %}">
+                Home
+            </a>
+
+            <a href="{% url 'shop' %}?category=Women">
+                Women
+            </a>
+
+            <a href="{% url 'shop' %}?category=Men">
+                Men
+            </a>
+
+            <a href="{% url 'shop' %}?category=Accessories">
+                Accessories
+            </a>
+
+            <a href="{% url 'shop' %}">
+                Collection
+            </a>
+
+        </div>
+
+
+
+        <div class="nav-icons">
+
+
+            <a href="{% url 'wishlist' %}"
+               class="nav-icon">
+
+                ♡
+
+                {% if wishlist_count > 0 %}
+
+                    <span class="count">
+                        {{ wishlist_count }}
+                    </span>
+
+                {% endif %}
+
+            </a>
+
+
+
+            <a href="{% url 'cart' %}"
+               class="nav-icon">
+
+                🛍
+
+                {% if cart_count > 0 %}
+
+                    <span class="count">
+                        {{ cart_count }}
+                    </span>
+
+                {% endif %}
+
+            </a>
+
+
+        </div>
+
+
+    </nav>
+
+
+
+    <!-- HEADER -->
+
+    <header class="page-header">
+
+
+        <div class="eyebrow">
+            Saved with love ♡
+        </div>
+
+
+        <h1>
+            My Wishlist
+        </h1>
+
+
+        <p>
+            Your favorite FashionStore pieces, all in one place.
+        </p>
+
+
+    </header>
+
+
+
+    <!-- WISHLIST -->
+
+    <section class="wishlist-section">
+
+
+        {% if wishlist_items %}
+
+
+            <div class="wishlist-grid">
+
+
+                {% for item in wishlist_items %}
+
+
+                    <article class="product-card"
+                             style="animation-delay: {{ forloop.counter0 }}00ms;">
+
+
+                        <a href="{% url 'product_detail' item.product.id %}"
+                           class="product-image">
+
+
+                            {% if item.product.image_url %}
+
+                                <img src="{{ item.product.image_url }}"
+                                     alt="{{ item.product.name }}">
+
+                            {% else %}
+
+                                <div style="
+                                    width:100%;
+                                    height:100%;
+                                    display:flex;
+                                    align-items:center;
+                                    justify-content:center;
+                                    color:#a89992;
+                                    font-size:13px;
+                                ">
+                                    FashionStore
+                                </div>
+
+                            {% endif %}
+
+
+                        </a>
+
+
+
+                        <a href="{% url 'remove_from_wishlist' item.product.id %}"
+                           class="remove-wishlist"
+                           title="Remove from wishlist"
+                           aria-label="Remove {{ item.product.name }} from wishlist">
+
+                            ♥
+
+                        </a>
+
+
+
+                        <div class="product-info">
+
+
+                            <div class="product-category">
+
+                                {{ item.product.category.name }}
+
+                            </div>
+
+
+                            <div class="product-name">
+
+                                {{ item.product.name }}
+
+                            </div>
+
+
+                            <div class="product-price">
+
+                                ₹{{ item.product.price|floatformat:2 }}
+
+                            </div>
+
+
+                            <a href="{% url 'product_detail' item.product.id %}"
+                               class="view-product">
+
+                                View Product
+
+                            </a>
+
+
+                        </div>
+
+
+                    </article>
+
+
+                {% endfor %}
+
+
+            </div>
+
+
+        {% else %}
+
+
+            <div class="empty-state">
+
+
+                <div class="empty-icon">
+                    ♡
+                </div>
+
+
+                <h2>
+                    Your wishlist is waiting
+                </h2>
+
+
+                <p>
+                    Save the pieces you love and come back to them anytime.
+                </p>
+
+
+                <a href="{% url 'shop' %}"
+                   class="shop-btn">
+
+                    Explore Collection
+
+                </a>
+
+
+            </div>
+
+
+        {% endif %}
+
+
+    </section>
+
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <strong>FashionStore</strong>
+
+        &nbsp;·&nbsp;
+
+        Style that feels like you.
+
+        <br><br>
+
+        © 2026 FashionStore. All rights reserved.
+
+    </footer>
+
+
+</body>
+
+</html>

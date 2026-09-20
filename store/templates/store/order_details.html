@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Order Details | FashionStore</title>
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&family=Sacramento&display=swap"
+          rel="stylesheet">
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+            font-family: "DM Sans", sans-serif;
+            background: #fffaf7;
+            color: #302a28;
+        }
+
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+
+        /* NAVBAR */
+
+        .navbar {
+            height: 82px;
+            background: rgba(255, 250, 247, 0.97);
+            border-bottom: 1px solid #eadfd9;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 6%;
+
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+
+        .logo {
+            font-family: "Playfair Display", serif;
+            font-size: 25px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+
+        .logo span {
+            font-family: "Sacramento", cursive;
+            color: #c98291;
+            font-size: 32px;
+        }
+
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
+
+
+        .nav-links a {
+            font-size: 14px;
+            color: #5e5551;
+            transition: 0.3s;
+        }
+
+
+        .nav-links a:hover {
+            color: #b9687b;
+        }
+
+
+        .nav-icons {
+            display: flex;
+            gap: 18px;
+        }
+
+
+        .nav-icon {
+            position: relative;
+            font-size: 20px;
+            transition: 0.3s;
+        }
+
+
+        .nav-icon:hover {
+            transform: translateY(-2px);
+        }
+
+
+        .count {
+            position: absolute;
+            top: -8px;
+            right: -10px;
+
+            width: 18px;
+            height: 18px;
+
+            background: #c97889;
+            color: white;
+
+            border-radius: 50%;
+
+            font-size: 10px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+
+        /* PAGE */
+
+        .page {
+            max-width: 1180px;
+            margin: auto;
+            padding: 65px 25px 80px;
+        }
+
+
+        .breadcrumb {
+            font-size: 13px;
+            color: #958983;
+            margin-bottom: 18px;
+        }
+
+
+        .breadcrumb a:hover {
+            color: #bd7181;
+        }
+
+
+        .eyebrow {
+            font-family: "Sacramento", cursive;
+            color: #c77d8d;
+            font-size: 30px;
+            margin-bottom: 3px;
+        }
+
+
+        .page-title {
+            font-family: "Playfair Display", serif;
+            font-size: 43px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+
+        .order-date {
+            color: #81746e;
+            font-size: 14px;
+            margin-bottom: 42px;
+        }
+
+
+        /* LAYOUT */
+
+        .details-layout {
+            display: grid;
+            grid-template-columns: 1.7fr 1fr;
+            gap: 28px;
+            align-items: start;
+        }
+
+
+        .card {
+            background: white;
+            border: 1px solid #eadfd9;
+            border-radius: 22px;
+            box-shadow: 0 10px 30px rgba(72, 50, 43, 0.04);
+        }
+
+
+        /* ITEMS */
+
+        .items-card {
+            padding: 28px;
+        }
+
+
+        .section-title {
+            font-family: "Playfair Display", serif;
+            font-size: 24px;
+            margin-bottom: 24px;
+        }
+
+
+        .product-item {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+
+            padding: 18px 0;
+
+            border-bottom: 1px solid #eee4df;
+        }
+
+
+        .product-item:first-of-type {
+            padding-top: 0;
+        }
+
+
+        .product-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+
+        .product-image {
+            width: 95px;
+            height: 115px;
+
+            flex-shrink: 0;
+
+            border-radius: 14px;
+
+            overflow: hidden;
+
+            background: #f5eeeb;
+        }
+
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+
+            transition: 0.4s;
+        }
+
+
+        .product-item:hover img {
+            transform: scale(1.05);
+        }
+
+
+        .product-info {
+            flex: 1;
+        }
+
+
+        .product-category {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            color: #b77a86;
+            margin-bottom: 5px;
+        }
+
+
+        .product-name {
+            font-family: "Playfair Display", serif;
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+
+        .product-meta {
+            color: #837771;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+
+        .product-price {
+            font-family: "Playfair Display", serif;
+            font-size: 18px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+
+        /* RIGHT SIDE */
+
+        .side-card {
+            padding: 28px;
+            margin-bottom: 20px;
+        }
+
+
+        .side-title {
+            font-family: "Playfair Display", serif;
+            font-size: 22px;
+            margin-bottom: 22px;
+        }
+
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+
+            padding: 12px 0;
+
+            border-bottom: 1px solid #eee4df;
+
+            font-size: 14px;
+        }
+
+
+        .info-row:last-child {
+            border-bottom: none;
+        }
+
+
+        .info-label {
+            color: #8a7d77;
+        }
+
+
+        .info-value {
+            text-align: right;
+            color: #403734;
+            font-weight: 500;
+        }
+
+
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+
+            margin-top: 18px;
+            padding-top: 20px;
+
+            border-top: 1px solid #dfd2cc;
+        }
+
+
+        .total-label {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+
+        .total-value {
+            font-family: "Playfair Display", serif;
+            font-size: 25px;
+            font-weight: 600;
+        }
+
+
+        .status {
+            display: inline-block;
+
+            padding: 8px 14px;
+
+            border-radius: 20px;
+
+            background: #edf6ed;
+            color: #55765a;
+
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+
+        .address {
+            color: #665b56;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+
+        /* BUTTONS */
+
+        .actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+
+            margin-top: 28px;
+        }
+
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 13px 22px;
+
+            border-radius: 28px;
+
+            font-size: 13px;
+            font-weight: 600;
+
+            transition: 0.3s;
+        }
+
+
+        .btn-primary {
+            background: #c97889;
+            color: white;
+        }
+
+
+        .btn-primary:hover {
+            background: #ae6173;
+            transform: translateY(-2px);
+        }
+
+
+        .btn-secondary {
+            border: 1px solid #d9c9c3;
+            background: white;
+            color: #514743;
+        }
+
+
+        .btn-secondary:hover {
+            color: #b9687b;
+            border-color: #c97889;
+            transform: translateY(-2px);
+        }
+
+
+        /* FOOTER */
+
+        footer {
+            border-top: 1px solid #eadfd9;
+
+            padding: 35px 6%;
+
+            text-align: center;
+
+            color: #8a7d77;
+            font-size: 13px;
+        }
+
+
+        footer strong {
+            color: #5b504c;
+        }
+
+
+        /* MOBILE */
+
+        @media (max-width: 850px) {
+
+            .nav-links {
+                display: none;
+            }
+
+
+            .navbar {
+                padding: 0 5%;
+            }
+
+
+            .details-layout {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .page {
+                padding: 45px 15px 60px;
+            }
+
+
+            .page-title {
+                font-size: 34px;
+            }
+
+
+            .items-card,
+            .side-card {
+                padding: 22px;
+            }
+
+
+            .product-item {
+                align-items: flex-start;
+            }
+
+
+            .product-image {
+                width: 78px;
+                height: 100px;
+            }
+
+
+            .product-name {
+                font-size: 17px;
+            }
+
+
+            .product-price {
+                font-size: 16px;
+            }
+
+
+            .product-item {
+                flex-wrap: wrap;
+            }
+
+
+            .product-price {
+                margin-left: 96px;
+            }
+
+
+            .actions {
+                flex-direction: column;
+            }
+
+
+            .btn {
+                width: 100%;
+            }
+
+
+            .logo {
+                font-size: 22px;
+            }
+
+
+            .logo span {
+                font-size: 29px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- NAVBAR -->
+
+    <nav class="navbar">
+
+        <a href="{% url 'home' %}" class="logo">
+            Fashion<span>Store</span>
+        </a>
+
+
+        <div class="nav-links">
+
+            <a href="{% url 'home' %}">
+                Home
+            </a>
+
+            <a href="{% url 'shop' %}?category=Women">
+                Women
+            </a>
+
+            <a href="{% url 'shop' %}?category=Men">
+                Men
+            </a>
+
+            <a href="{% url 'shop' %}?category=Accessories">
+                Accessories
+            </a>
+
+            <a href="{% url 'shop' %}">
+                Collection
+            </a>
+
+        </div>
+
+
+        <div class="nav-icons">
+
+            <a href="{% url 'wishlist' %}"
+               class="nav-icon">
+
+                ♡
+
+                {% if wishlist_count > 0 %}
+                    <span class="count">
+                        {{ wishlist_count }}
+                    </span>
+                {% endif %}
+
+            </a>
+
+
+            <a href="{% url 'cart' %}"
+               class="nav-icon">
+
+                🛍
+
+                {% if cart_count > 0 %}
+                    <span class="count">
+                        {{ cart_count }}
+                    </span>
+                {% endif %}
+
+            </a>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- MAIN -->
+
+    <main class="page">
+
+
+        <div class="breadcrumb">
+
+            <a href="{% url 'home' %}">
+                Home
+            </a>
+
+            &nbsp; / &nbsp;
+
+            <a href="{% url 'my_orders' %}">
+                My Orders
+            </a>
+
+            &nbsp; / &nbsp;
+
+            Order #{{ order.id }}
+
+        </div>
+
+
+        <div class="eyebrow">
+            Your FashionStore purchase ♡
+        </div>
+
+
+        <h1 class="page-title">
+            Order #{{ order.id }}
+        </h1>
+
+
+        <div class="order-date">
+
+            Placed on
+            {{ order.created_at|date:"d M Y" }}
+            at
+            {{ order.created_at|date:"h:i A" }}
+
+        </div>
+
+
+
+        <div class="details-layout">
+
+
+            <!-- ITEMS -->
+
+            <section class="card items-card">
+
+                <h2 class="section-title">
+                    Items in your order
+                </h2>
+
+
+                {% for item in order_items %}
+
+                    <div class="product-item">
+
+
+                        <div class="product-image">
+
+                            {% if item.product.image_url %}
+
+                                <img src="{{ item.product.image_url }}"
+                                     alt="{{ item.product.name }}">
+
+                            {% else %}
+
+                                <div style="
+                                    width:100%;
+                                    height:100%;
+                                    display:flex;
+                                    align-items:center;
+                                    justify-content:center;
+                                    color:#a89992;
+                                    font-size:13px;
+                                ">
+                                    FashionStore
+                                </div>
+
+                            {% endif %}
+
+                        </div>
+
+
+
+                        <div class="product-info">
+
+                            <div class="product-category">
+
+                                {{ item.product.category.name }}
+
+                            </div>
+
+
+                            <div class="product-name">
+
+                                {{ item.product.name }}
+
+                            </div>
+
+
+                            <div class="product-meta">
+
+                                {% if item.size %}
+                                    Size: {{ item.size }}
+                                    <br>
+                                {% endif %}
+
+                                Quantity: {{ item.quantity }}
+
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="product-price">
+
+                            ₹{{ item.price|floatformat:2 }}
+
+                        </div>
+
+
+                    </div>
+
+                {% endfor %}
+
+
+                <div class="actions">
+
+                    <a href="{% url 'my_orders' %}"
+                       class="btn btn-secondary">
+
+                        ← My Orders
+
+                    </a>
+
+
+                    <a href="{% url 'shop' %}"
+                       class="btn btn-primary">
+
+                        Continue Shopping
+
+                    </a>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- ORDER SUMMARY -->
+
+            <aside>
+
+
+                <div class="card side-card">
+
+                    <h2 class="side-title">
+                        Order Summary
+                    </h2>
+
+
+                    <div class="info-row">
+
+                        <span class="info-label">
+                            Status
+                        </span>
+
+                        <span class="info-value">
+
+                            <span class="status">
+                                Confirmed
+                            </span>
+
+                        </span>
+
+                    </div>
+
+
+                    <div class="info-row">
+
+                        <span class="info-label">
+                            Customer
+                        </span>
+
+                        <span class="info-value">
+                            {{ order.customer_name }}
+                        </span>
+
+                    </div>
+
+
+                    <div class="info-row">
+
+                        <span class="info-label">
+                            Email
+                        </span>
+
+                        <span class="info-value">
+                            {{ order.email }}
+                        </span>
+
+                    </div>
+
+
+                    <div class="total-row">
+
+                        <span class="total-label">
+                            Total
+                        </span>
+
+                        <span class="total-value">
+                            ₹{{ order.total_amount|floatformat:2 }}
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="card side-card">
+
+                    <h2 class="side-title">
+                        Delivery Address
+                    </h2>
+
+
+                    <p class="address">
+                        {{ order.address|linebreaksbr }}
+                    </p>
+
+                </div>
+
+
+            </aside>
+
+
+        </div>
+
+    </main>
+
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <strong>FashionStore</strong>
+        &nbsp;·&nbsp;
+        Style that feels like you.
+
+        <br><br>
+
+        © 2026 FashionStore. All rights reserved.
+
+    </footer>
+
+
+</body>
+
+</html>

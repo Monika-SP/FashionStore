@@ -1,0 +1,890 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Checkout | FashionStore</title>
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&family=Sacramento&display=swap"
+          rel="stylesheet">
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "DM Sans", sans-serif;
+            background: #fbf7f3;
+            color: #332d2d;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* NAVBAR */
+
+        .navbar {
+            height: 82px;
+            background: rgba(255, 250, 247, 0.96);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 6%;
+            border-bottom: 1px solid #eadfd9;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-family: "Playfair Display", serif;
+            font-size: 27px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            font-family: "Sacramento", cursive;
+            color: #c65c7b;
+            font-size: 30px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+        }
+
+        .nav-links a {
+            font-size: 14px;
+            color: #514848;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #c65c7b;
+        }
+
+        .nav-icons {
+            display: flex;
+            align-items: center;
+            gap: 17px;
+        }
+
+        .nav-icon {
+            font-size: 20px;
+            position: relative;
+            transition: 0.3s;
+        }
+
+        .nav-icon:hover {
+            color: #c65c7b;
+            transform: translateY(-2px);
+        }
+
+        .counter {
+            position: absolute;
+            top: -9px;
+            right: -10px;
+            min-width: 17px;
+            height: 17px;
+            padding: 0 4px;
+            background: #c65c7b;
+            color: white;
+            border-radius: 20px;
+            font-size: 9px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* HEADER */
+
+        .page-header {
+            text-align: center;
+            padding: 70px 20px 45px;
+        }
+
+        .small-title {
+            color: #c65c7b;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .page-header h1 {
+            font-family: "Playfair Display", serif;
+            font-size: 48px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .page-header p {
+            color: #817572;
+            font-size: 14px;
+        }
+
+        /* CHECKOUT */
+
+        .checkout-container {
+            width: 88%;
+            max-width: 1200px;
+            margin: 0 auto 90px;
+
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 55px;
+            align-items: start;
+        }
+
+        /* DELIVERY */
+
+        .delivery-card {
+            background: white;
+            border: 1px solid #eadfd9;
+            padding: 35px;
+        }
+
+        .section-heading {
+            margin-bottom: 28px;
+        }
+
+        .section-heading span {
+            display: block;
+            color: #c65c7b;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+
+        .section-heading h2 {
+            font-family: "Playfair Display", serif;
+            font-size: 28px;
+            font-weight: 600;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #514848;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            border: 1px solid #ded2cc;
+            background: #fdfaf8;
+            padding: 14px 15px;
+            font-family: inherit;
+            font-size: 13px;
+            color: #332d2d;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .form-group textarea {
+            min-height: 125px;
+            resize: vertical;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: #c65c7b;
+            background: white;
+        }
+
+        .place-order-button {
+            width: 100%;
+            border: none;
+            background: #c65c7b;
+            color: white;
+            padding: 17px;
+
+            font-family: inherit;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 5px;
+        }
+
+        .place-order-button:hover {
+            background: #332d2d;
+            transform: translateY(-2px);
+        }
+
+        .back-cart {
+            display: block;
+            text-align: center;
+            margin-top: 18px;
+            color: #817572;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .back-cart:hover {
+            color: #c65c7b;
+        }
+
+        /* ORDER SUMMARY */
+
+        .order-summary {
+            background: #f2e3df;
+            padding: 32px;
+            position: sticky;
+            top: 105px;
+        }
+
+        .order-summary h2 {
+            font-family: "Playfair Display", serif;
+            font-size: 27px;
+            font-weight: 600;
+            margin-bottom: 25px;
+        }
+
+        .summary-item {
+            display: flex;
+            gap: 13px;
+            padding: 13px 0;
+            border-bottom: 1px solid #ddccc5;
+        }
+
+        .summary-image {
+            width: 65px;
+            height: 80px;
+            background: #e8d9d3;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .summary-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .summary-details {
+            flex: 1;
+        }
+
+        .summary-name {
+            font-family: "Playfair Display", serif;
+            font-size: 14px;
+            line-height: 1.4;
+            margin-bottom: 5px;
+        }
+
+        .summary-info {
+            color: #817572;
+            font-size: 10px;
+            line-height: 1.7;
+        }
+
+        .summary-price {
+            font-size: 12px;
+            font-weight: 600;
+            margin-top: 5px;
+        }
+
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 13px 0;
+            color: #6f6460;
+            font-size: 13px;
+        }
+
+        .divider {
+            height: 1px;
+            background: #d9c9c3;
+            margin: 5px 0;
+        }
+
+        .grand-total {
+            display: flex;
+            justify-content: space-between;
+            padding-top: 18px;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .checkout-note {
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid #d9c9c3;
+            color: #897a74;
+            font-size: 10px;
+            line-height: 1.7;
+            text-align: center;
+        }
+
+        /* FOOTER */
+
+        footer {
+            background: #332d2d;
+            color: #eee;
+            padding: 55px 6% 25px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .footer-brand h2 {
+            font-family: "Playfair Display", serif;
+            margin-bottom: 10px;
+        }
+
+        .footer-brand p {
+            color: #c9c0bc;
+            max-width: 320px;
+            line-height: 1.7;
+            font-size: 13px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 55px;
+        }
+
+        .footer-column h4 {
+            margin-bottom: 15px;
+            font-size: 13px;
+        }
+
+        .footer-column a {
+            display: block;
+            color: #c9c0bc;
+            font-size: 12px;
+            margin-bottom: 9px;
+            transition: 0.3s;
+        }
+
+        .footer-column a:hover {
+            color: white;
+        }
+
+        .copyright {
+            border-top: 1px solid #514949;
+            margin-top: 40px;
+            padding-top: 20px;
+            text-align: center;
+            color: #aaa;
+            font-size: 11px;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 1000px) {
+
+            .nav-links {
+                display: none;
+            }
+
+            .checkout-container {
+                grid-template-columns: 1fr;
+            }
+
+            .order-summary {
+                position: static;
+            }
+
+        }
+
+        @media (max-width: 600px) {
+
+            .navbar {
+                height: 70px;
+                padding: 0 5%;
+            }
+
+            .logo {
+                font-size: 22px;
+            }
+
+            .logo span {
+                font-size: 25px;
+            }
+
+            .nav-icons {
+                gap: 13px;
+            }
+
+            .page-header {
+                padding: 55px 20px 35px;
+            }
+
+            .page-header h1 {
+                font-size: 36px;
+            }
+
+            .checkout-container {
+                width: 90%;
+                gap: 30px;
+            }
+
+            .delivery-card {
+                padding: 25px 20px;
+            }
+
+            .order-summary {
+                padding: 25px 20px;
+            }
+
+            .footer-links {
+                gap: 35px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- NAVBAR -->
+
+<nav class="navbar">
+
+    <a href="{% url 'home' %}"
+       class="logo">
+
+        Fashion<span>Store</span>
+
+    </a>
+
+
+    <div class="nav-links">
+
+        <a href="{% url 'home' %}">
+            Home
+        </a>
+
+        <a href="{% url 'shop' %}?category=Women">
+            Women
+        </a>
+
+        <a href="{% url 'shop' %}?category=Men">
+            Men
+        </a>
+
+        <a href="{% url 'shop' %}?category=Accessories">
+            Accessories
+        </a>
+
+        <a href="{% url 'shop' %}">
+            Collection
+        </a>
+
+    </div>
+
+
+    <div class="nav-icons">
+
+        <a href="{% url 'shop' %}"
+           class="nav-icon">
+            ⌕
+        </a>
+
+
+        {% if user.is_authenticated %}
+
+            <a href="{% url 'profile' %}"
+               class="nav-icon">
+                ♙
+            </a>
+
+
+            <a href="{% url 'wishlist' %}"
+               class="nav-icon">
+
+                ♡
+
+                {% if wishlist_count > 0 %}
+                    <span class="counter">
+                        {{ wishlist_count }}
+                    </span>
+                {% endif %}
+
+            </a>
+
+
+            <a href="{% url 'cart' %}"
+               class="nav-icon">
+
+                ♧
+
+                {% if cart_count > 0 %}
+                    <span class="counter">
+                        {{ cart_count }}
+                    </span>
+                {% endif %}
+
+            </a>
+
+        {% else %}
+
+            <a href="{% url 'login' %}"
+               class="nav-icon">
+                ♙
+            </a>
+
+            <a href="{% url 'login' %}"
+               class="nav-icon">
+                ♧
+            </a>
+
+        {% endif %}
+
+    </div>
+
+</nav>
+
+
+<!-- PAGE HEADER -->
+
+<section class="page-header">
+
+    <div class="small-title">
+        Almost yours
+    </div>
+
+    <h1>
+        Checkout
+    </h1>
+
+    <p>
+        Complete your details and place your order.
+    </p>
+
+</section>
+
+
+<!-- CHECKOUT -->
+
+<section class="checkout-container">
+
+
+    <!-- DELIVERY FORM -->
+
+    <div class="delivery-card">
+
+        <div class="section-heading">
+
+            <span>
+                Delivery details
+            </span>
+
+            <h2>
+                Where should we send it?
+            </h2>
+
+        </div>
+
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+
+            <div class="form-group">
+
+                <label for="customer_name">
+                    Full Name
+                </label>
+
+                <input type="text"
+                       id="customer_name"
+                       name="customer_name"
+                       placeholder="Enter your full name"
+                       required>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="email">
+                    Email Address
+                </label>
+
+                <input type="email"
+                       id="email"
+                       name="email"
+                       placeholder="Enter your email address"
+                       required>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="address">
+                    Delivery Address
+                </label>
+
+                <textarea id="address"
+                          name="address"
+                          placeholder="Enter your complete delivery address"
+                          required></textarea>
+
+            </div>
+
+
+            <button type="submit"
+                    class="place-order-button">
+
+                Place Order
+
+            </button>
+
+        </form>
+
+
+        <a href="{% url 'cart' %}"
+           class="back-cart">
+
+            ← Back to Shopping Bag
+
+        </a>
+
+    </div>
+
+
+    <!-- ORDER SUMMARY -->
+
+    <aside class="order-summary">
+
+        <h2>
+            Your Order
+        </h2>
+
+
+        {% for item in cart_items %}
+
+        <div class="summary-item">
+
+
+            <div class="summary-image">
+
+                {% if item.product.image_url %}
+
+                    <img src="{{ item.product.image_url }}"
+                         alt="{{ item.product.name }}">
+
+                {% endif %}
+
+            </div>
+
+
+            <div class="summary-details">
+
+                <div class="summary-name">
+                    {{ item.product.name }}
+                </div>
+
+
+                <div class="summary-info">
+
+                    {% if item.size %}
+                        Size: {{ item.size }} ·
+                    {% endif %}
+
+                    Qty: {{ item.quantity }}
+
+                </div>
+
+
+                <div class="summary-price">
+                    ₹{{ item.total_price }}
+                </div>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+
+        <div class="total-row">
+
+            <span>
+                Subtotal
+            </span>
+
+            <span>
+                ₹{{ cart_total }}
+            </span>
+
+        </div>
+
+
+        <div class="total-row">
+
+            <span>
+                Shipping
+            </span>
+
+            <span>
+                Free
+            </span>
+
+        </div>
+
+
+        <div class="divider"></div>
+
+
+        <div class="grand-total">
+
+            <span>
+                Total
+            </span>
+
+            <span>
+                ₹{{ cart_total }}
+            </span>
+
+        </div>
+
+
+        <div class="checkout-note">
+
+            Your order details are securely processed.
+            Thank you for shopping with FashionStore.
+
+        </div>
+
+    </aside>
+
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <div class="footer-content">
+
+
+        <div class="footer-brand">
+
+            <h2>
+                FashionStore
+            </h2>
+
+            <p>
+                Everyday fashion with a thoughtful,
+                effortless and personal touch.
+            </p>
+
+        </div>
+
+
+        <div class="footer-links">
+
+
+            <div class="footer-column">
+
+                <h4>
+                    Shop
+                </h4>
+
+                <a href="{% url 'shop' %}">
+                    Collection
+                </a>
+
+                <a href="{% url 'shop' %}?category=Women">
+                    Women
+                </a>
+
+                <a href="{% url 'shop' %}?category=Men">
+                    Men
+                </a>
+
+                <a href="{% url 'shop' %}?category=Accessories">
+                    Accessories
+                </a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h4>
+                    Account
+                </h4>
+
+                <a href="{% url 'profile' %}">
+                    Profile
+                </a>
+
+                <a href="{% url 'wishlist' %}">
+                    Wishlist
+                </a>
+
+                <a href="{% url 'my_orders' %}">
+                    My Orders
+                </a>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+    <div class="copyright">
+
+        © 2026 FashionStore. All rights reserved.
+
+    </div>
+
+</footer>
+
+
+</body>
+
+</html>

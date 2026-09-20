@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FashionStore</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Sacramento&display=swap" rel="stylesheet">
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "DM Sans", sans-serif;
+            color: #211d1d;
+            background: #fcfaf7;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* NAVBAR */
+
+        .navbar {
+            height: 88px;
+            padding: 0 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #fffdfb;
+            position: relative;
+            z-index: 10;
+            border-bottom: 1px solid #eee5df;
+        }
+
+        .logo {
+            font-family: "Playfair Display", serif;
+            font-size: 34px;
+            letter-spacing: -2px;
+        }
+
+        .logo span {
+            font-family: "Sacramento", cursive;
+            color: #c34d72;
+            font-size: 45px;
+            margin-left: 4px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 35px;
+        }
+
+        .nav-links a {
+            font-size: 14px;
+            transition: .3s;
+        }
+
+        .nav-links a:hover {
+            color: #c34d72;
+        }
+
+        .nav-icons {
+            display: flex;
+            gap: 24px;
+            font-size: 22px;
+            align-items: center;
+        }
+
+        .cart-link {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .cart-count {
+            font-size: 12px;
+            font-weight: 600;
+            color: #c34d72;
+        }
+
+        /* HERO */
+
+        .hero {
+            min-height: calc(100vh - 88px);
+            position: relative;
+            overflow: hidden;
+
+            background-image:
+                linear-gradient(
+                    90deg,
+                    rgba(248,239,233,.98) 0%,
+                    rgba(248,239,233,.94) 32%,
+                    rgba(248,239,233,.45) 55%,
+                    rgba(248,239,233,.05) 78%
+                ),
+                url("https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1800&q=90");
+
+            background-size: cover;
+            background-position: center 25%;
+        }
+
+        .hero-content {
+            min-height: calc(100vh - 88px);
+            padding: 80px 7%;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .hero-text {
+            width: 52%;
+            z-index: 3;
+        }
+
+        .eyebrow {
+            color: #c34d72;
+            letter-spacing: 3px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 25px;
+        }
+
+        .hero h1 {
+            font-family: "Playfair Display", serif;
+            font-size: clamp(58px, 7vw, 100px);
+            font-weight: 400;
+            line-height: .94;
+            letter-spacing: -4px;
+        }
+
+        .hero h1 span {
+            color: #c34d72;
+            font-family: "Sacramento", cursive;
+            font-size: 1.15em;
+            letter-spacing: 0;
+        }
+
+        .hero-description {
+            max-width: 470px;
+            margin-top: 32px;
+            color: #665b56;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        /* BUTTONS */
+
+        .buttons {
+            display: flex;
+            gap: 18px;
+            margin-top: 35px;
+        }
+
+        .button {
+            padding: 16px 30px;
+            border-radius: 40px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: .3s;
+        }
+
+        .pink-button {
+            background: #c34d72;
+            color: white;
+        }
+
+        .pink-button:hover {
+            background: #aa3e61;
+            transform: translateY(-3px);
+        }
+
+        .outline-button {
+            border: 1px solid #655b56;
+        }
+
+        .outline-button:hover {
+            background: white;
+            transform: translateY(-3px);
+        }
+
+        /* HEARTS */
+
+        .heart {
+            position: absolute;
+            color: #c34d72;
+            font-family: "Playfair Display", serif;
+            font-size: 38px;
+            animation: floating 4s ease-in-out infinite;
+        }
+
+        .heart-one {
+            right: 46%;
+            top: 20%;
+        }
+
+        .heart-two {
+            right: 29%;
+            top: 28%;
+            font-size: 27px;
+            animation-delay: 1s;
+        }
+
+        .heart-three {
+            right: 13%;
+            top: 18%;
+            font-size: 31px;
+            animation-delay: 1.5s;
+        }
+
+        .heart-four {
+            right: 23%;
+            bottom: 20%;
+            font-size: 25px;
+            animation-delay: 2s;
+        }
+
+        @keyframes floating {
+
+            0%,100% {
+                transform: translateY(0) rotate(-8deg);
+            }
+
+            50% {
+                transform: translateY(-10px) rotate(5deg);
+            }
+        }
+
+        /* NOTE */
+
+        .note {
+            position: absolute;
+            right: 5%;
+            top: 18%;
+
+            background: #e9ccd2;
+            padding: 20px 26px;
+
+            font-family: "Sacramento", cursive;
+            font-size: 27px;
+            line-height: 1.05;
+
+            transform: rotate(4deg);
+
+            box-shadow: 0 15px 35px rgba(50,30,30,.1);
+        }
+
+        .note span {
+            color: #c34d72;
+        }
+
+        /* SCROLL */
+
+        .scroll {
+            position: absolute;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            font-size: 9px;
+            letter-spacing: 3px;
+            color: #756862;
+        }
+
+        .scroll-line {
+            width: 1px;
+            height: 38px;
+            background: #756862;
+            margin: 8px auto 0;
+        }
+
+        /* INTRO */
+
+        .intro {
+            text-align: center;
+            padding: 120px 8%;
+        }
+
+        .intro small {
+            color: #c34d72;
+            letter-spacing: 3px;
+            font-weight: 600;
+        }
+
+        .intro h2 {
+            font-family: "Playfair Display", serif;
+            font-size: 58px;
+            font-weight: 400;
+            margin: 18px 0;
+        }
+
+        .intro h2 span {
+            font-family: "Sacramento", cursive;
+            color: #c34d72;
+            font-size: 1.2em;
+        }
+
+        .intro p {
+            max-width: 600px;
+            margin: auto;
+            color: #82766f;
+            line-height: 1.8;
+        }
+
+        /* CATEGORY */
+
+        .categories {
+            padding: 70px 6%;
+        }
+
+        .heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            margin-bottom: 35px;
+        }
+
+        .heading small {
+            color: #c34d72;
+            letter-spacing: 3px;
+        }
+
+        .heading h2 {
+            font-family: "Playfair Display", serif;
+            font-size: 48px;
+            font-weight: 400;
+            margin-top: 8px;
+        }
+
+        .heading a {
+            border-bottom: 1px solid #211d1d;
+            padding-bottom: 5px;
+            font-size: 13px;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 1fr 1fr;
+            gap: 18px;
+        }
+
+        .category {
+            height: 540px;
+            position: relative;
+            overflow: hidden;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: end;
+        }
+
+        .women {
+            background-image:
+                linear-gradient(to top,rgba(0,0,0,.55),transparent 60%),
+                url("https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1000&q=90");
+        }
+
+        .men {
+            background-image:
+                linear-gradient(to top,rgba(0,0,0,.55),transparent 60%),
+                url("https://images.unsplash.com/photo-1490578474895-699cd4e2cf59?auto=format&fit=crop&w=1000&q=90");
+        }
+
+        .accessories {
+            background-image:
+                linear-gradient(to top,rgba(0,0,0,.55),transparent 60%),
+                url("https://images.unsplash.com/photo-1492707892479-7bc8d5a4ee93?auto=format&fit=crop&w=1000&q=90");
+        }
+
+        .category-text {
+            color: white;
+            padding: 30px;
+        }
+
+        .category-text h3 {
+            font-family: "Playfair Display", serif;
+            font-size: 44px;
+            font-weight: 400;
+        }
+
+        .category-text p {
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        /* PRODUCTS */
+
+        .products {
+            padding: 90px 6%;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            gap: 25px;
+        }
+
+        .product-image {
+            aspect-ratio: .78;
+            overflow: hidden;
+            background: #eee7e2;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: .6s;
+        }
+
+        .product:hover img {
+            transform: scale(1.05);
+        }
+
+        .product-info {
+            display: flex;
+            justify-content: space-between;
+            padding-top: 14px;
+        }
+
+        .product-info small {
+            color: #998d86;
+            font-size: 10px;
+            letter-spacing: 1px;
+        }
+
+        .product-info h3 {
+            font-size: 14px;
+            font-weight: 500;
+            margin-top: 5px;
+        }
+
+        .product-info strong {
+            font-size: 14px;
+        }
+
+        /* FOOTER */
+
+        footer {
+            background: #211d1d;
+            color: white;
+            padding: 70px 6%;
+            text-align: center;
+        }
+
+        footer .logo {
+            font-size: 32px;
+        }
+
+        footer p {
+            color: #aaa09b;
+            margin-top: 15px;
+        }
+
+        /* MOBILE */
+
+        @media(max-width:900px) {
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                min-height: 750px;
+                background-position: 65% center;
+            }
+
+            .hero-content {
+                min-height: 750px;
+                align-items: flex-start;
+                padding-top: 70px;
+            }
+
+            .hero-text {
+                width: 100%;
+            }
+
+            .hero h1 {
+                font-size: 58px;
+            }
+
+            .note {
+                display: none;
+            }
+
+            .category-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .product-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media(max-width:600px) {
+
+            .navbar {
+                height: 70px;
+                padding: 0 5%;
+            }
+
+            .logo {
+                font-size: 27px;
+            }
+
+            .logo span {
+                font-size: 35px;
+            }
+
+            .nav-icons {
+                gap: 15px;
+                font-size: 20px;
+            }
+
+            .cart-count {
+                font-size: 11px;
+            }
+
+            .hero {
+                min-height: 700px;
+            }
+
+            .hero-content {
+                min-height: 700px;
+                padding: 55px 7%;
+            }
+
+            .hero h1 {
+                font-size: 51px;
+                letter-spacing: -2px;
+            }
+
+            .hero-description {
+                font-size: 14px;
+            }
+
+            .buttons {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .button {
+                width: 210px;
+                text-align: center;
+            }
+
+            .intro {
+                padding: 80px 7%;
+            }
+
+            .intro h2 {
+                font-size: 42px;
+            }
+
+            .categories,
+            .products {
+                padding: 60px 5%;
+            }
+
+            .heading {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .heading h2 {
+                font-size: 40px;
+            }
+
+            .product-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 14px;
+            }
+
+            .product-info {
+                display: block;
+            }
+
+            .product-info strong {
+                display: block;
+                margin-top: 5px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<header class="navbar">
+
+    <a href="{% url 'home' %}" class="logo">
+        Fashion<span>Store</span>
+    </a>
+
+    <nav class="nav-links">
+
+        <a href="{% url 'home' %}">
+            Home
+        </a>
+
+        <a href="{% url 'shop' %}?category=Women">
+            Women
+        </a>
+
+        <a href="{% url 'shop' %}?category=Men">
+            Men
+        </a>
+
+        <a href="{% url 'shop' %}?category=Accessories">
+            Accessories
+        </a>
+
+        <a href="{% url 'shop' %}">
+            Collection
+        </a>
+
+        <a href="#about">
+            About
+        </a>
+
+    </nav>
+
+    <div class="nav-icons">
+
+        <a href="{% url 'shop' %}">⌕</a>
+
+        {% if user.is_authenticated %}
+
+            <a href="{% url 'profile' %}">♙</a>
+
+            <a href="{% url 'cart' %}" class="cart-link">
+                ♧
+                <span class="cart-count">
+                    {{ cart_count }}
+                </span>
+            </a>
+
+        {% else %}
+
+            <a href="{% url 'login' %}">♙</a>
+
+            <a href="{% url 'login' %}">♧</a>
+
+        {% endif %}
+
+    </div>
+
+</header>
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <div class="hero-text">
+
+            <p class="eyebrow">
+                NEW SEASON · NEW STYLE
+            </p>
+
+            <h1>
+                Style that<br>
+                feels like <span>you.</span> ♡
+            </h1>
+
+            <p class="hero-description">
+                Discover thoughtfully selected fashion for
+                everyday moments, special days and everything
+                in between.
+            </p>
+
+            <div class="buttons">
+
+                <a href="{% url 'shop' %}" class="button pink-button">
+                    Explore Collection →
+                </a>
+
+                <a href="{% url 'shop' %}?category=Women"
+                   class="button outline-button">
+                    Shop Women
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="heart heart-one">♡</div>
+        <div class="heart heart-two">♡</div>
+        <div class="heart heart-three">♡</div>
+        <div class="heart heart-four">♡</div>
+
+
+        <div class="note">
+            Same girl.<br>
+            Bigger dreams.<br>
+            <span>Better outfits ♡</span>
+        </div>
+
+
+        <div class="scroll">
+            SCROLL
+            <div class="scroll-line"></div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- INTRO -->
+
+<section class="intro">
+
+    <small>
+        OUR WORLD
+    </small>
+
+    <h2>
+        Pieces made for
+        <span>your everyday.</span>
+    </h2>
+
+    <p>
+        From effortless everyday looks to pieces that make
+        you feel a little extra special — discover fashion
+        that fits naturally into your life.
+    </p>
+
+</section>
+
+
+<!-- CATEGORIES -->
+
+<section class="categories">
+
+    <div class="heading">
+
+        <div>
+            <small>SHOP BY MOOD</small>
+            <h2>Find your style.</h2>
+        </div>
+
+        <a href="{% url 'shop' %}">
+            View all →
+        </a>
+
+    </div>
+
+
+    <div class="category-grid">
+
+        <a href="{% url 'shop' %}?category=Women"
+           class="category women">
+
+            <div class="category-text">
+
+                <h3>Women</h3>
+
+                <p>
+                    Explore collection →
+                </p>
+
+            </div>
+
+        </a>
+
+
+        <a href="{% url 'shop' %}?category=Men"
+           class="category men">
+
+            <div class="category-text">
+
+                <h3>Men</h3>
+
+                <p>
+                    Explore collection →
+                </p>
+
+            </div>
+
+        </a>
+
+
+        <a href="{% url 'shop' %}?category=Accessories"
+           class="category accessories">
+
+            <div class="category-text">
+
+                <h3>Accessories</h3>
+
+                <p>
+                    Explore collection →
+                </p>
+
+            </div>
+
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- WOMEN PRODUCTS -->
+
+<section class="products">
+
+    <div class="heading">
+
+        <div>
+            <small>FOR HER</small>
+            <h2>Women's edit.</h2>
+        </div>
+
+        <a href="{% url 'shop' %}?category=Women">
+            Shop women →
+        </a>
+
+    </div>
+
+
+    <div class="product-grid">
+
+        {% for product in women_products %}
+
+        <a href="{% url 'product_detail' product.id %}"
+           class="product">
+
+            <div class="product-image">
+
+                {% if product.image_url %}
+
+                    <img src="{{ product.image_url }}"
+                         alt="{{ product.name }}">
+
+                {% endif %}
+
+            </div>
+
+            <div class="product-info">
+
+                <div>
+
+                    <small>
+                        {{ product.category.name }}
+                    </small>
+
+                    <h3>
+                        {{ product.name }}
+                    </h3>
+
+                </div>
+
+                <strong>
+                    ₹{{ product.price }}
+                </strong>
+
+            </div>
+
+        </a>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+
+<!-- ABOUT -->
+
+<section id="about" style="
+    min-height:500px;
+    background:#eadfd7;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:80px 10%;
+">
+
+    <div style="max-width:650px;">
+
+        <small style="
+            color:#c34d72;
+            letter-spacing:3px;
+            font-weight:600;
+        ">
+            ABOUT FASHIONSTORE
+        </small>
+
+        <h2 style="
+            font-family:'Playfair Display',serif;
+            font-size:60px;
+            font-weight:400;
+            margin:20px 0;
+        ">
+            Style should feel
+            <span style="
+                font-family:'Sacramento',cursive;
+                color:#c34d72;
+            ">
+                like yours.
+            </span>
+        </h2>
+
+        <p style="
+            color:#6f625c;
+            line-height:1.8;
+        ">
+            FashionStore is a space for easy, beautiful fashion —
+            thoughtfully selected pieces that help you express
+            your own personality.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <div class="logo">
+        Fashion<span>Store</span>
+    </div>
+
+    <p>
+        Style that feels like you. ♡
+    </p>
+
+    <p style="margin-top:30px;font-size:12px;">
+        © 2026 FashionStore
+    </p>
+
+</footer>
+
+
+</body>
+</html>

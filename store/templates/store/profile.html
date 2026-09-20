@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>My Profile | FashionStore</title>
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&family=Sacramento&display=swap"
+          rel="stylesheet">
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+            font-family: "DM Sans", sans-serif;
+            background: #fffaf7;
+            color: #302a28;
+        }
+
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+
+        /* NAVBAR */
+
+        .navbar {
+            height: 82px;
+
+            background: rgba(255, 250, 247, 0.97);
+
+            border-bottom: 1px solid #eadfd9;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 6%;
+
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+
+        .logo {
+            font-family: "Playfair Display", serif;
+
+            font-size: 25px;
+
+            font-weight: 700;
+
+            letter-spacing: 1px;
+        }
+
+
+        .logo span {
+            font-family: "Sacramento", cursive;
+
+            color: #c98291;
+
+            font-size: 32px;
+        }
+
+
+        .nav-links {
+            display: flex;
+
+            align-items: center;
+
+            gap: 28px;
+        }
+
+
+        .nav-links a {
+            font-size: 14px;
+
+            color: #5e5551;
+
+            transition: 0.3s;
+        }
+
+
+        .nav-links a:hover {
+            color: #b9687b;
+        }
+
+
+        .nav-icons {
+            display: flex;
+
+            align-items: center;
+
+            gap: 18px;
+        }
+
+
+        .nav-icon {
+            position: relative;
+
+            font-size: 20px;
+
+            transition: 0.3s;
+        }
+
+
+        .nav-icon:hover {
+            transform: translateY(-2px);
+        }
+
+
+        .count {
+            position: absolute;
+
+            top: -8px;
+            right: -10px;
+
+            width: 18px;
+            height: 18px;
+
+            background: #c97889;
+
+            color: white;
+
+            border-radius: 50%;
+
+            font-size: 10px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+
+        /* MAIN */
+
+        .profile-page {
+            max-width: 1050px;
+
+            margin: auto;
+
+            padding: 65px 25px 80px;
+        }
+
+
+        .page-heading {
+            text-align: center;
+
+            margin-bottom: 42px;
+        }
+
+
+        .eyebrow {
+            font-family: "Sacramento", cursive;
+
+            color: #c77d8d;
+
+            font-size: 30px;
+
+            margin-bottom: 3px;
+        }
+
+
+        .page-heading h1 {
+            font-family: "Playfair Display", serif;
+
+            font-size: 44px;
+
+            font-weight: 600;
+
+            margin-bottom: 10px;
+        }
+
+
+        .page-heading p {
+            color: #7c706a;
+
+            font-size: 14px;
+        }
+
+
+        /* PROFILE CARD */
+
+        .profile-card {
+            background: white;
+
+            border: 1px solid #eadfd9;
+
+            border-radius: 28px;
+
+            padding: 42px;
+
+            box-shadow:
+                0 14px 40px
+                rgba(72, 50, 43, 0.06);
+
+            animation: fadeUp 0.6s ease;
+        }
+
+
+        @keyframes fadeUp {
+
+            from {
+                opacity: 0;
+
+                transform: translateY(18px);
+            }
+
+            to {
+                opacity: 1;
+
+                transform: translateY(0);
+            }
+
+        }
+
+
+        .profile-top {
+            display: flex;
+
+            align-items: center;
+
+            gap: 25px;
+
+            padding-bottom: 32px;
+
+            border-bottom: 1px solid #eee4df;
+        }
+
+
+        .avatar {
+            width: 92px;
+            height: 92px;
+
+            flex-shrink: 0;
+
+            border-radius: 50%;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f4d9df,
+                    #f8e9dc
+                );
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-family: "Playfair Display", serif;
+
+            font-size: 34px;
+
+            font-weight: 600;
+
+            color: #a96172;
+
+            border: 5px solid #fff;
+
+            box-shadow:
+                0 5px 20px
+                rgba(80, 50, 45, 0.08);
+        }
+
+
+        .profile-name {
+            font-family: "Playfair Display", serif;
+
+            font-size: 29px;
+
+            font-weight: 600;
+
+            margin-bottom: 6px;
+        }
+
+
+        .profile-email {
+            color: #81746e;
+
+            font-size: 14px;
+
+            margin-bottom: 10px;
+        }
+
+
+        .member-badge {
+            display: inline-block;
+
+            padding: 6px 12px;
+
+            border-radius: 20px;
+
+            background: #f9e8eb;
+
+            color: #ae6476;
+
+            font-size: 11px;
+
+            font-weight: 600;
+        }
+
+
+        /* INFORMATION */
+
+        .information {
+            padding-top: 32px;
+        }
+
+
+        .section-title {
+            font-family: "Playfair Display", serif;
+
+            font-size: 23px;
+
+            margin-bottom: 20px;
+        }
+
+
+        .info-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 16px;
+        }
+
+
+        .info-box {
+            background: #fffaf7;
+
+            border: 1px solid #eee1dc;
+
+            border-radius: 16px;
+
+            padding: 18px 20px;
+        }
+
+
+        .info-label {
+            font-size: 11px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1.2px;
+
+            color: #a0928c;
+
+            margin-bottom: 7px;
+        }
+
+
+        .info-value {
+            font-size: 15px;
+
+            color: #403734;
+
+            font-weight: 500;
+
+            word-break: break-word;
+        }
+
+
+        /* SHORTCUTS */
+
+        .shortcuts {
+            margin-top: 35px;
+
+            padding-top: 32px;
+
+            border-top: 1px solid #eee4df;
+        }
+
+
+        .shortcut-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 15px;
+        }
+
+
+        .shortcut {
+            border: 1px solid #eadfd9;
+
+            border-radius: 16px;
+
+            padding: 19px;
+
+            background: white;
+
+            transition: 0.3s;
+
+            text-align: center;
+        }
+
+
+        .shortcut:hover {
+            transform: translateY(-3px);
+
+            border-color: #d9b8c0;
+
+            box-shadow:
+                0 10px 25px
+                rgba(72, 50, 43, 0.06);
+        }
+
+
+        .shortcut-icon {
+            font-size: 23px;
+
+            margin-bottom: 8px;
+        }
+
+
+        .shortcut-title {
+            font-family: "Playfair Display", serif;
+
+            font-size: 17px;
+
+            margin-bottom: 4px;
+        }
+
+
+        .shortcut-text {
+            color: #8a7d77;
+
+            font-size: 12px;
+        }
+
+
+        /* LOGOUT */
+
+        .logout-section {
+            margin-top: 35px;
+
+            text-align: center;
+        }
+
+
+        .logout-btn {
+            display: inline-flex;
+
+            align-items: center;
+            justify-content: center;
+
+            padding: 13px 30px;
+
+            border-radius: 28px;
+
+            border: 1px solid #d9c9c3;
+
+            background: white;
+
+            color: #6a5d58;
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+            transition: 0.3s;
+        }
+
+
+        .logout-btn:hover {
+            border-color: #c97889;
+
+            color: #b9687b;
+
+            transform: translateY(-2px);
+        }
+
+
+        /* FOOTER */
+
+        footer {
+            border-top: 1px solid #eadfd9;
+
+            padding: 35px 6%;
+
+            text-align: center;
+
+            color: #8a7d77;
+
+            font-size: 13px;
+        }
+
+
+        footer strong {
+            color: #5b504c;
+        }
+
+
+        /* TABLET */
+
+        @media (max-width: 850px) {
+
+            .nav-links {
+                display: none;
+            }
+
+
+            .navbar {
+                padding: 0 5%;
+            }
+
+
+            .profile-card {
+                padding: 30px;
+            }
+
+
+            .shortcut-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+        }
+
+
+        /* MOBILE */
+
+        @media (max-width: 600px) {
+
+            .profile-page {
+                padding: 48px 15px 60px;
+            }
+
+
+            .page-heading h1 {
+                font-size: 35px;
+            }
+
+
+            .profile-card {
+                padding: 24px;
+
+                border-radius: 22px;
+            }
+
+
+            .profile-top {
+                flex-direction: column;
+
+                text-align: center;
+
+                padding-bottom: 26px;
+            }
+
+
+            .profile-name {
+                font-size: 25px;
+            }
+
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+
+            .shortcut-grid {
+                grid-template-columns: 1fr;
+            }
+
+
+            .logo {
+                font-size: 22px;
+            }
+
+
+            .logo span {
+                font-size: 29px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- NAVBAR -->
+
+    <nav class="navbar">
+
+
+        <a href="{% url 'home' %}"
+           class="logo">
+
+            Fashion<span>Store</span>
+
+        </a>
+
+
+        <div class="nav-links">
+
+            <a href="{% url 'home' %}">
+                Home
+            </a>
+
+            <a href="{% url 'shop' %}?category=Women">
+                Women
+            </a>
+
+            <a href="{% url 'shop' %}?category=Men">
+                Men
+            </a>
+
+            <a href="{% url 'shop' %}?category=Accessories">
+                Accessories
+            </a>
+
+            <a href="{% url 'shop' %}">
+                Collection
+            </a>
+
+        </div>
+
+
+        <div class="nav-icons">
+
+
+            <a href="{% url 'wishlist' %}"
+               class="nav-icon">
+
+                ♡
+
+                {% if wishlist_count > 0 %}
+
+                    <span class="count">
+                        {{ wishlist_count }}
+                    </span>
+
+                {% endif %}
+
+            </a>
+
+
+            <a href="{% url 'cart' %}"
+               class="nav-icon">
+
+                🛍
+
+                {% if cart_count > 0 %}
+
+                    <span class="count">
+                        {{ cart_count }}
+                    </span>
+
+                {% endif %}
+
+            </a>
+
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- PROFILE -->
+
+    <main class="profile-page">
+
+
+        <header class="page-heading">
+
+            <div class="eyebrow">
+                A little space for you ♡
+            </div>
+
+            <h1>
+                My Profile
+            </h1>
+
+            <p>
+                Manage your FashionStore account and shopping activity.
+            </p>
+
+        </header>
+
+
+
+        <section class="profile-card">
+
+
+            <!-- PROFILE TOP -->
+
+            <div class="profile-top">
+
+
+                <div class="avatar">
+
+                    {{ user.username|first|upper }}
+
+                </div>
+
+
+                <div>
+
+                    <div class="profile-name">
+                        {{ user.username }}
+                    </div>
+
+
+                    <div class="profile-email">
+
+                        {% if user.email %}
+
+                            {{ user.email }}
+
+                        {% else %}
+
+                            Email not added
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <span class="member-badge">
+                        FashionStore Member
+                    </span>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- ACCOUNT INFORMATION -->
+
+            <div class="information">
+
+
+                <h2 class="section-title">
+                    Account Information
+                </h2>
+
+
+                <div class="info-grid">
+
+
+                    <div class="info-box">
+
+                        <div class="info-label">
+                            Username
+                        </div>
+
+                        <div class="info-value">
+                            {{ user.username }}
+                        </div>
+
+                    </div>
+
+
+                    <div class="info-box">
+
+                        <div class="info-label">
+                            Email
+                        </div>
+
+                        <div class="info-value">
+
+                            {% if user.email %}
+
+                                {{ user.email }}
+
+                            {% else %}
+
+                                Not provided
+
+                            {% endif %}
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="info-box">
+
+                        <div class="info-label">
+                            Member Since
+                        </div>
+
+                        <div class="info-value">
+
+                            {{ user.date_joined|date:"d M Y" }}
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="info-box">
+
+                        <div class="info-label">
+                            Account Status
+                        </div>
+
+                        <div class="info-value">
+                            Active
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- SHORTCUTS -->
+
+            <div class="shortcuts">
+
+
+                <h2 class="section-title">
+                    Quick Access
+                </h2>
+
+
+                <div class="shortcut-grid">
+
+
+                    <a href="{% url 'my_orders' %}"
+                       class="shortcut">
+
+                        <div class="shortcut-icon">
+                            🛍
+                        </div>
+
+                        <div class="shortcut-title">
+                            My Orders
+                        </div>
+
+                        <div class="shortcut-text">
+                            View your purchases
+                        </div>
+
+                    </a>
+
+
+                    <a href="{% url 'wishlist' %}"
+                       class="shortcut">
+
+                        <div class="shortcut-icon">
+                            ♡
+                        </div>
+
+                        <div class="shortcut-title">
+                            Wishlist
+                        </div>
+
+                        <div class="shortcut-text">
+                            View saved pieces
+                        </div>
+
+                    </a>
+
+
+                    <a href="{% url 'shop' %}"
+                       class="shortcut">
+
+                        <div class="shortcut-icon">
+                            ✦
+                        </div>
+
+                        <div class="shortcut-title">
+                            Collection
+                        </div>
+
+                        <div class="shortcut-text">
+                            Discover new styles
+                        </div>
+
+                    </a>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- LOGOUT -->
+
+            <div class="logout-section">
+
+                <a href="{% url 'logout' %}"
+                   class="logout-btn">
+
+                    Log Out
+
+                </a>
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <strong>FashionStore</strong>
+
+        &nbsp;·&nbsp;
+
+        Style that feels like you.
+
+        <br><br>
+
+        © 2026 FashionStore. All rights reserved.
+
+    </footer>
+
+
+</body>
+
+</html>

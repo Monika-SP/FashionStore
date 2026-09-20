@@ -1,0 +1,885 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>{{ product.name }} | FashionStore</title>
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&family=Sacramento&display=swap"
+          rel="stylesheet">
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "DM Sans", sans-serif;
+            background: #fbf7f3;
+            color: #332d2d;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* NAVBAR */
+
+        .navbar {
+            height: 82px;
+            background: rgba(255, 250, 247, 0.96);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 6%;
+            border-bottom: 1px solid #eadfd9;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-family: "Playfair Display", serif;
+            font-size: 27px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            font-family: "Sacramento", cursive;
+            color: #c65c7b;
+            font-size: 30px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-size: 14px;
+            color: #514848;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #c65c7b;
+        }
+
+        .nav-icons {
+            display: flex;
+            align-items: center;
+            gap: 17px;
+        }
+
+        .nav-icon {
+            font-size: 20px;
+            position: relative;
+            transition: 0.3s;
+        }
+
+        .nav-icon:hover {
+            color: #c65c7b;
+            transform: translateY(-2px);
+        }
+
+        .counter {
+            position: absolute;
+            top: -9px;
+            right: -10px;
+            min-width: 17px;
+            height: 17px;
+            padding: 0 4px;
+            background: #c65c7b;
+            color: white;
+            border-radius: 20px;
+            font-size: 9px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* BREADCRUMB */
+
+        .breadcrumb {
+            width: 88%;
+            max-width: 1200px;
+            margin: 35px auto 20px;
+            color: #9b8d87;
+            font-size: 12px;
+        }
+
+        .breadcrumb a:hover {
+            color: #c65c7b;
+        }
+
+        /* PRODUCT */
+
+        .product-section {
+            width: 88%;
+            max-width: 1200px;
+            margin: 0 auto 90px;
+
+            display: grid;
+            grid-template-columns: 1.05fr 0.95fr;
+            gap: 70px;
+            align-items: start;
+        }
+
+        .product-image {
+            background: #eee5df;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .product-image img {
+            width: 100%;
+            aspect-ratio: 0.82;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.8s ease;
+        }
+
+        .product-image:hover img {
+            transform: scale(1.035);
+        }
+
+        /* DETAILS */
+
+        .details {
+            padding-top: 25px;
+        }
+
+        .category {
+            color: #c65c7b;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+
+        .details h1 {
+            font-family: "Playfair Display", serif;
+            font-size: 47px;
+            line-height: 1.12;
+            font-weight: 600;
+            margin-bottom: 17px;
+        }
+
+        .price {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 25px;
+        }
+
+        .description {
+            color: #766b68;
+            font-size: 14px;
+            line-height: 1.9;
+            margin-bottom: 32px;
+        }
+
+        /* SIZE */
+
+        .size-title {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .sizes {
+            display: flex;
+            gap: 9px;
+            margin-bottom: 28px;
+            flex-wrap: wrap;
+        }
+
+        .size-option {
+            position: relative;
+        }
+
+        .size-option input {
+            display: none;
+        }
+
+        .size-option label {
+            min-width: 48px;
+            height: 45px;
+            padding: 0 14px;
+            border: 1px solid #d9cec8;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 13px;
+            transition: 0.3s;
+        }
+
+        .size-option label:hover {
+            border-color: #c65c7b;
+            color: #c65c7b;
+        }
+
+        .size-option input:checked + label {
+            background: #332d2d;
+            border-color: #332d2d;
+            color: white;
+        }
+
+        /* BUTTON */
+
+        .bag-button {
+            width: 100%;
+            border: none;
+            background: #c65c7b;
+            color: white;
+            padding: 17px;
+            font-family: inherit;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .bag-button:hover {
+            background: #332d2d;
+            transform: translateY(-2px);
+        }
+
+        /* WISHLIST */
+
+        .wishlist-button {
+            width: 100%;
+            margin-top: 12px;
+            padding: 16px;
+            background: transparent;
+            border: 1px solid #d9cec8;
+            font-family: inherit;
+            font-size: 12px;
+            letter-spacing: 1.3px;
+            text-transform: uppercase;
+            cursor: pointer;
+            color: #514848;
+            transition: 0.3s;
+        }
+
+        .wishlist-button:hover {
+            border-color: #c65c7b;
+            color: #c65c7b;
+        }
+
+        /* INFO */
+
+        .shipping-info {
+            border-top: 1px solid #e2d7d1;
+            margin-top: 35px;
+        }
+
+        .info-row {
+            display: flex;
+            gap: 15px;
+            padding: 17px 0;
+            border-bottom: 1px solid #e2d7d1;
+            font-size: 12px;
+            color: #766b68;
+        }
+
+        .info-icon {
+            font-size: 18px;
+        }
+
+        .continue {
+            display: inline-block;
+            margin-top: 25px;
+            color: #c65c7b;
+            font-size: 12px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .continue:hover {
+            text-decoration: underline;
+        }
+
+        /* FOOTER */
+
+        footer {
+            background: #332d2d;
+            color: #eee;
+            padding: 55px 6% 25px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .footer-brand h2 {
+            font-family: "Playfair Display", serif;
+            margin-bottom: 10px;
+        }
+
+        .footer-brand p {
+            color: #c9c0bc;
+            max-width: 320px;
+            line-height: 1.7;
+            font-size: 13px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 55px;
+        }
+
+        .footer-column h4 {
+            margin-bottom: 15px;
+            font-size: 13px;
+        }
+
+        .footer-column a {
+            display: block;
+            color: #c9c0bc;
+            font-size: 12px;
+            margin-bottom: 9px;
+        }
+
+        .footer-column a:hover {
+            color: white;
+        }
+
+        .copyright {
+            border-top: 1px solid #514949;
+            margin-top: 40px;
+            padding-top: 20px;
+            text-align: center;
+            color: #aaa;
+            font-size: 11px;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 900px) {
+
+            .nav-links {
+                display: none;
+            }
+
+            .product-section {
+                grid-template-columns: 1fr;
+                gap: 35px;
+            }
+
+            .details {
+                padding-top: 0;
+            }
+
+        }
+
+        @media (max-width: 600px) {
+
+            .navbar {
+                height: 70px;
+                padding: 0 5%;
+            }
+
+            .logo {
+                font-size: 22px;
+            }
+
+            .logo span {
+                font-size: 25px;
+            }
+
+            .nav-icons {
+                gap: 13px;
+            }
+
+            .breadcrumb {
+                width: 90%;
+                margin-top: 25px;
+            }
+
+            .product-section {
+                width: 90%;
+                margin-bottom: 60px;
+            }
+
+            .details h1 {
+                font-size: 35px;
+            }
+
+            .description {
+                font-size: 13px;
+            }
+
+            .footer-links {
+                gap: 35px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- NAVBAR -->
+
+<nav class="navbar">
+
+    <a href="{% url 'home' %}"
+       class="logo">
+
+        Fashion<span>Store</span>
+
+    </a>
+
+
+    <div class="nav-links">
+
+        <a href="{% url 'home' %}">
+            Home
+        </a>
+
+        <a href="{% url 'shop' %}?category=Women">
+            Women
+        </a>
+
+        <a href="{% url 'shop' %}?category=Men">
+            Men
+        </a>
+
+        <a href="{% url 'shop' %}?category=Accessories">
+            Accessories
+        </a>
+
+        <a href="{% url 'shop' %}">
+            Collection
+        </a>
+
+    </div>
+
+
+    <div class="nav-icons">
+
+        <a href="{% url 'shop' %}"
+           class="nav-icon">
+            ⌕
+        </a>
+
+
+        {% if user.is_authenticated %}
+
+            <a href="{% url 'profile' %}"
+               class="nav-icon">
+                ♙
+            </a>
+
+
+            <a href="{% url 'wishlist' %}"
+               class="nav-icon">
+
+                ♡
+
+                {% if wishlist_count > 0 %}
+                    <span class="counter">
+                        {{ wishlist_count }}
+                    </span>
+                {% endif %}
+
+            </a>
+
+
+            <a href="{% url 'cart' %}"
+               class="nav-icon">
+
+                ♧
+
+                {% if cart_count > 0 %}
+                    <span class="counter">
+                        {{ cart_count }}
+                    </span>
+                {% endif %}
+
+            </a>
+
+        {% else %}
+
+            <a href="{% url 'login' %}"
+               class="nav-icon">
+                ♙
+            </a>
+
+            <a href="{% url 'login' %}"
+               class="nav-icon">
+                ♧
+            </a>
+
+        {% endif %}
+
+    </div>
+
+</nav>
+
+
+<!-- BREADCRUMB -->
+
+<div class="breadcrumb">
+
+    <a href="{% url 'home' %}">
+        Home
+    </a>
+
+    &nbsp; / &nbsp;
+
+    <a href="{% url 'shop' %}">
+        Collection
+    </a>
+
+    &nbsp; / &nbsp;
+
+    {{ product.name }}
+
+</div>
+
+
+<!-- PRODUCT -->
+
+<section class="product-section">
+
+
+    <!-- IMAGE -->
+
+    <div class="product-image">
+
+        {% if product.image_url %}
+
+            <img src="{{ product.image_url }}"
+                 alt="{{ product.name }}">
+
+        {% endif %}
+
+    </div>
+
+
+    <!-- DETAILS -->
+
+    <div class="details">
+
+        <div class="category">
+            {{ product.category.name }}
+        </div>
+
+
+        <h1>
+            {{ product.name }}
+        </h1>
+
+
+        <div class="price">
+            ₹{{ product.price }}
+        </div>
+
+
+        <div class="description">
+
+            {{ product.description }}
+
+        </div>
+
+
+        {% if sizes %}
+
+            <div class="size-title">
+                Select Size
+            </div>
+
+
+            <div class="sizes">
+
+                {% for size in sizes %}
+
+                    <div class="size-option">
+
+                        <input type="radio"
+                               name="size_choice"
+                               id="size{{ size.id }}"
+                               value="{{ size.size }}">
+
+                        <label for="size{{ size.id }}">
+                            {{ size.size }}
+                        </label>
+
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+        {% endif %}
+
+
+        <form method="POST"
+              action="{% url 'add_to_cart' product.id %}">
+
+            {% csrf_token %}
+
+            <input type="hidden"
+                   name="size"
+                   id="selectedSize"
+                   value="">
+
+            <button type="submit"
+                    class="bag-button">
+
+                Add to Bag
+
+            </button>
+
+        </form>
+
+
+        {% if user.is_authenticated %}
+
+            <form method="POST"
+                  action="{% url 'toggle_wishlist' product.id %}">
+
+                {% csrf_token %}
+
+                <button type="submit"
+                        class="wishlist-button">
+
+                    {% if is_wishlisted %}
+
+                        ♥ Remove from Wishlist
+
+                    {% else %}
+
+                        ♡ Add to Wishlist
+
+                    {% endif %}
+
+                </button>
+
+            </form>
+
+        {% endif %}
+
+
+        <div class="shipping-info">
+
+            <div class="info-row">
+
+                <span class="info-icon">
+                    ♧
+                </span>
+
+                <span>
+                    Free shipping on your order.
+                </span>
+
+            </div>
+
+
+            <div class="info-row">
+
+                <span class="info-icon">
+                    ↺
+                </span>
+
+                <span>
+                    Easy returns within our return period.
+                </span>
+
+            </div>
+
+
+            <div class="info-row">
+
+                <span class="info-icon">
+                    ♡
+                </span>
+
+                <span>
+                    Carefully selected by FashionStore.
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <a href="{% url 'shop' %}"
+           class="continue">
+
+            ← Continue Shopping
+
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <div class="footer-content">
+
+
+        <div class="footer-brand">
+
+            <h2>
+                FashionStore
+            </h2>
+
+            <p>
+                Everyday fashion with a thoughtful,
+                effortless and personal touch.
+            </p>
+
+        </div>
+
+
+        <div class="footer-links">
+
+
+            <div class="footer-column">
+
+                <h4>
+                    Shop
+                </h4>
+
+                <a href="{% url 'shop' %}">
+                    Collection
+                </a>
+
+                <a href="{% url 'shop' %}?category=Women">
+                    Women
+                </a>
+
+                <a href="{% url 'shop' %}?category=Men">
+                    Men
+                </a>
+
+                <a href="{% url 'shop' %}?category=Accessories">
+                    Accessories
+                </a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h4>
+                    Account
+                </h4>
+
+                {% if user.is_authenticated %}
+
+                    <a href="{% url 'profile' %}">
+                        Profile
+                    </a>
+
+                    <a href="{% url 'wishlist' %}">
+                        Wishlist
+                    </a>
+
+                    <a href="{% url 'my_orders' %}">
+                        My Orders
+                    </a>
+
+                {% else %}
+
+                    <a href="{% url 'login' %}">
+                        Login
+                    </a>
+
+                    <a href="{% url 'register' %}">
+                        Register
+                    </a>
+
+                {% endif %}
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+    <div class="copyright">
+
+        © 2026 FashionStore. All rights reserved.
+
+    </div>
+
+</footer>
+
+
+<script>
+
+    const sizeInputs =
+        document.querySelectorAll(
+            'input[name="size_choice"]'
+        );
+
+    const selectedSize =
+        document.getElementById(
+            "selectedSize"
+        );
+
+
+    sizeInputs.forEach(function(input) {
+
+        input.addEventListener(
+            "change",
+            function() {
+
+                selectedSize.value =
+                    this.value;
+
+            }
+        );
+
+    });
+
+</script>
+
+
+</body>
+
+</html>

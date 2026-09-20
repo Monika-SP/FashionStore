@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Order Confirmed | FashionStore</title>
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&family=Sacramento&display=swap"
+          rel="stylesheet">
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+            font-family: "DM Sans", sans-serif;
+            background: #fffaf7;
+            color: #302a28;
+        }
+
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+
+        /* NAVBAR */
+
+        .navbar {
+            height: 82px;
+            background: rgba(255, 250, 247, 0.96);
+            border-bottom: 1px solid #eadfd9;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 6%;
+
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+
+        .logo {
+            font-family: "Playfair Display", serif;
+            font-size: 25px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+
+        .logo span {
+            font-family: "Sacramento", cursive;
+            color: #c98291;
+            font-size: 32px;
+            margin-left: 2px;
+        }
+
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
+
+
+        .nav-links a {
+            font-size: 14px;
+            color: #5e5551;
+            transition: 0.3s;
+        }
+
+
+        .nav-links a:hover {
+            color: #b9687b;
+        }
+
+
+        .nav-icons {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+
+        .nav-icon {
+            position: relative;
+            font-size: 20px;
+            transition: 0.3s;
+        }
+
+
+        .nav-icon:hover {
+            transform: translateY(-2px);
+        }
+
+
+        .count {
+            position: absolute;
+            top: -8px;
+            right: -10px;
+
+            width: 18px;
+            height: 18px;
+
+            background: #c97889;
+            color: white;
+
+            border-radius: 50%;
+
+            font-size: 10px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+
+        /* MAIN */
+
+        .success-section {
+            min-height: calc(100vh - 82px);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 70px 20px;
+        }
+
+
+        .success-card {
+            width: 100%;
+            max-width: 720px;
+
+            background: white;
+
+            border: 1px solid #eadfd9;
+            border-radius: 28px;
+
+            padding: 65px 50px;
+
+            text-align: center;
+
+            box-shadow: 0 18px 50px rgba(72, 50, 43, 0.07);
+
+            animation: fadeUp 0.7s ease;
+        }
+
+
+        @keyframes fadeUp {
+
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        }
+
+
+        .success-icon {
+            width: 86px;
+            height: 86px;
+
+            margin: 0 auto 28px;
+
+            border-radius: 50%;
+
+            background: #f8e4e8;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 38px;
+
+            color: #b96779;
+
+            animation: pop 0.7s ease;
+        }
+
+
+        @keyframes pop {
+
+            0% {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+
+            70% {
+                transform: scale(1.08);
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+        }
+
+
+        .small-title {
+            font-family: "Sacramento", cursive;
+            color: #c77d8d;
+            font-size: 30px;
+            margin-bottom: 5px;
+        }
+
+
+        h1 {
+            font-family: "Playfair Display", serif;
+            font-size: 42px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+
+        .message {
+            max-width: 520px;
+            margin: 0 auto;
+
+            color: #766c67;
+            line-height: 1.8;
+            font-size: 15px;
+        }
+
+
+        .order-box {
+            margin: 35px auto;
+
+            max-width: 430px;
+
+            padding: 22px;
+
+            background: #fff7f4;
+
+            border: 1px solid #eaded8;
+            border-radius: 18px;
+        }
+
+
+        .order-label {
+            font-size: 12px;
+            color: #9b8d87;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 7px;
+        }
+
+
+        .order-number {
+            font-family: "Playfair Display", serif;
+            font-size: 25px;
+            font-weight: 600;
+            color: #3a302d;
+        }
+
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+
+            margin-top: 30px;
+
+            flex-wrap: wrap;
+        }
+
+
+        .btn {
+            padding: 14px 27px;
+
+            border-radius: 30px;
+
+            font-size: 14px;
+            font-weight: 600;
+
+            transition: 0.3s;
+        }
+
+
+        .btn-primary {
+            background: #c97889;
+            color: white;
+        }
+
+
+        .btn-primary:hover {
+            background: #ae6173;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(201, 120, 137, 0.22);
+        }
+
+
+        .btn-secondary {
+            border: 1px solid #d9c9c3;
+            color: #4d4440;
+            background: white;
+        }
+
+
+        .btn-secondary:hover {
+            border-color: #c97889;
+            color: #b9687b;
+            transform: translateY(-2px);
+        }
+
+
+        .heart-line {
+            margin-top: 35px;
+
+            color: #c97889;
+            font-size: 18px;
+            letter-spacing: 5px;
+        }
+
+
+        /* FOOTER */
+
+        footer {
+            border-top: 1px solid #eadfd9;
+
+            padding: 35px 6%;
+
+            text-align: center;
+
+            color: #8a7d77;
+            font-size: 13px;
+        }
+
+
+        footer strong {
+            color: #5b504c;
+        }
+
+
+        /* MOBILE */
+
+        @media (max-width: 850px) {
+
+            .nav-links {
+                display: none;
+            }
+
+            .navbar {
+                padding: 0 5%;
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .success-section {
+                padding: 40px 15px;
+            }
+
+
+            .success-card {
+                padding: 45px 25px;
+                border-radius: 22px;
+            }
+
+
+            h1 {
+                font-size: 34px;
+            }
+
+
+            .message {
+                font-size: 14px;
+            }
+
+
+            .buttons {
+                flex-direction: column;
+            }
+
+
+            .btn {
+                width: 100%;
+            }
+
+
+            .logo {
+                font-size: 22px;
+            }
+
+
+            .logo span {
+                font-size: 29px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- NAVBAR -->
+
+    <nav class="navbar">
+
+        <a href="{% url 'home' %}" class="logo">
+            Fashion<span>Store</span>
+        </a>
+
+
+        <div class="nav-links">
+
+            <a href="{% url 'home' %}">
+                Home
+            </a>
+
+            <a href="{% url 'shop' %}?category=Women">
+                Women
+            </a>
+
+            <a href="{% url 'shop' %}?category=Men">
+                Men
+            </a>
+
+            <a href="{% url 'shop' %}?category=Accessories">
+                Accessories
+            </a>
+
+            <a href="{% url 'shop' %}">
+                Collection
+            </a>
+
+        </div>
+
+
+        <div class="nav-icons">
+
+            <a href="{% url 'wishlist' %}"
+               class="nav-icon">
+
+                ♡
+
+                {% if wishlist_count > 0 %}
+                    <span class="count">
+                        {{ wishlist_count }}
+                    </span>
+                {% endif %}
+
+            </a>
+
+
+            <a href="{% url 'cart' %}"
+               class="nav-icon">
+
+                🛍
+
+                {% if cart_count > 0 %}
+                    <span class="count">
+                        {{ cart_count }}
+                    </span>
+                {% endif %}
+
+            </a>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- SUCCESS -->
+
+    <main class="success-section">
+
+        <div class="success-card">
+
+
+            <div class="success-icon">
+                ✓
+            </div>
+
+
+            <div class="small-title">
+                Thank you ♡
+            </div>
+
+
+            <h1>
+                Your order is confirmed
+            </h1>
+
+
+            <p class="message">
+                Your order has been placed successfully.
+                We are getting everything ready for you and
+                will make sure your FashionStore pieces reach
+                you with care.
+            </p>
+
+
+            <div class="order-box">
+
+                <div class="order-label">
+                    Order number
+                </div>
+
+                <div class="order-number">
+                    #{{ order.id }}
+                </div>
+
+            </div>
+
+
+            <div class="buttons">
+
+                <a href="{% url 'my_orders' %}"
+                   class="btn btn-primary">
+
+                    View My Orders
+
+                </a>
+
+
+                <a href="{% url 'shop' %}"
+                   class="btn btn-secondary">
+
+                    Continue Shopping
+
+                </a>
+
+            </div>
+
+
+            <div class="heart-line">
+                ♡ &nbsp; ♡ &nbsp; ♡
+            </div>
+
+
+        </div>
+
+    </main>
+
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <strong>FashionStore</strong>
+        &nbsp;·&nbsp;
+        Style that feels like you.
+
+        <br><br>
+
+        © 2026 FashionStore. All rights reserved.
+
+    </footer>
+
+
+</body>
+
+</html>

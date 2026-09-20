@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>My Orders | FashionStore</title>
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&family=Sacramento&display=swap"
+          rel="stylesheet">
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+            font-family: "DM Sans", sans-serif;
+            background: #fffaf7;
+            color: #302a28;
+        }
+
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+
+        /* NAVBAR */
+
+        .navbar {
+            height: 82px;
+            background: rgba(255, 250, 247, 0.97);
+            border-bottom: 1px solid #eadfd9;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 6%;
+
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+
+        .logo {
+            font-family: "Playfair Display", serif;
+            font-size: 25px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+
+        .logo span {
+            font-family: "Sacramento", cursive;
+            color: #c98291;
+            font-size: 32px;
+            margin-left: 2px;
+        }
+
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
+
+
+        .nav-links a {
+            font-size: 14px;
+            color: #5e5551;
+            transition: 0.3s;
+        }
+
+
+        .nav-links a:hover {
+            color: #b9687b;
+        }
+
+
+        .nav-icons {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+
+        .nav-icon {
+            position: relative;
+            font-size: 20px;
+            transition: 0.3s;
+        }
+
+
+        .nav-icon:hover {
+            transform: translateY(-2px);
+        }
+
+
+        .count {
+            position: absolute;
+            top: -8px;
+            right: -10px;
+
+            width: 18px;
+            height: 18px;
+
+            background: #c97889;
+            color: white;
+
+            border-radius: 50%;
+
+            font-size: 10px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+
+        /* PAGE HEADER */
+
+        .page-header {
+            max-width: 1180px;
+            margin: 0 auto;
+
+            padding: 70px 25px 45px;
+        }
+
+
+        .eyebrow {
+            font-family: "Sacramento", cursive;
+            color: #c77d8d;
+            font-size: 30px;
+            margin-bottom: 4px;
+        }
+
+
+        .page-header h1 {
+            font-family: "Playfair Display", serif;
+            font-size: 44px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+
+        .page-header p {
+            color: #7c706a;
+            font-size: 15px;
+        }
+
+
+        /* ORDERS */
+
+        .orders-section {
+            max-width: 1180px;
+            margin: 0 auto;
+
+            padding: 0 25px 80px;
+        }
+
+
+        .orders-grid {
+            display: grid;
+            gap: 22px;
+        }
+
+
+        .order-card {
+            background: white;
+
+            border: 1px solid #eadfd9;
+            border-radius: 22px;
+
+            padding: 26px 28px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 25px;
+
+            box-shadow: 0 10px 30px rgba(72, 50, 43, 0.04);
+
+            transition: 0.3s;
+
+            animation: fadeUp 0.5s ease both;
+        }
+
+
+        .order-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 16px 35px rgba(72, 50, 43, 0.08);
+        }
+
+
+        @keyframes fadeUp {
+
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        }
+
+
+        .order-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+
+        .order-icon {
+            width: 58px;
+            height: 58px;
+
+            flex-shrink: 0;
+
+            border-radius: 50%;
+
+            background: #f9e8eb;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 24px;
+            color: #b9687b;
+        }
+
+
+        .order-info h2 {
+            font-family: "Playfair Display", serif;
+            font-size: 21px;
+            font-weight: 600;
+
+            margin-bottom: 6px;
+        }
+
+
+        .order-date {
+            color: #91837d;
+            font-size: 13px;
+        }
+
+
+        .order-middle {
+            text-align: center;
+        }
+
+
+        .status {
+            display: inline-block;
+
+            padding: 7px 14px;
+
+            border-radius: 20px;
+
+            background: #edf6ed;
+            color: #55765a;
+
+            font-size: 12px;
+            font-weight: 600;
+
+            margin-bottom: 8px;
+        }
+
+
+        .total-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #9b8e88;
+        }
+
+
+        .total {
+            font-family: "Playfair Display", serif;
+            font-size: 21px;
+            font-weight: 600;
+
+            margin-top: 2px;
+        }
+
+
+        .view-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 12px 22px;
+
+            border-radius: 25px;
+
+            background: #c97889;
+            color: white;
+
+            font-size: 13px;
+            font-weight: 600;
+
+            transition: 0.3s;
+        }
+
+
+        .view-btn:hover {
+            background: #ae6173;
+            transform: translateY(-2px);
+        }
+
+
+        /* EMPTY */
+
+        .empty-state {
+            background: white;
+
+            border: 1px solid #eadfd9;
+            border-radius: 25px;
+
+            text-align: center;
+
+            padding: 70px 25px;
+
+            box-shadow: 0 12px 35px rgba(72, 50, 43, 0.04);
+        }
+
+
+        .empty-icon {
+            width: 82px;
+            height: 82px;
+
+            margin: 0 auto 25px;
+
+            border-radius: 50%;
+
+            background: #f9e8eb;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 35px;
+        }
+
+
+        .empty-state h2 {
+            font-family: "Playfair Display", serif;
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+
+        .empty-state p {
+            color: #81746e;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+
+
+        .shop-btn {
+            display: inline-block;
+
+            padding: 13px 26px;
+
+            border-radius: 28px;
+
+            background: #c97889;
+            color: white;
+
+            font-size: 14px;
+            font-weight: 600;
+
+            transition: 0.3s;
+        }
+
+
+        .shop-btn:hover {
+            background: #ae6173;
+            transform: translateY(-2px);
+        }
+
+
+        /* FOOTER */
+
+        footer {
+            border-top: 1px solid #eadfd9;
+
+            padding: 35px 6%;
+
+            text-align: center;
+
+            color: #8a7d77;
+            font-size: 13px;
+        }
+
+
+        footer strong {
+            color: #5b504c;
+        }
+
+
+        /* MOBILE */
+
+        @media (max-width: 850px) {
+
+            .nav-links {
+                display: none;
+            }
+
+            .navbar {
+                padding: 0 5%;
+            }
+
+
+            .order-card {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+
+            .order-middle {
+                text-align: left;
+                padding-left: 78px;
+            }
+
+
+            .view-btn {
+                width: 100%;
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .page-header {
+                padding: 50px 20px 35px;
+            }
+
+
+            .page-header h1 {
+                font-size: 35px;
+            }
+
+
+            .orders-section {
+                padding: 0 15px 60px;
+            }
+
+
+            .order-card {
+                padding: 22px;
+                border-radius: 18px;
+            }
+
+
+            .order-left {
+                gap: 14px;
+            }
+
+
+            .order-icon {
+                width: 50px;
+                height: 50px;
+            }
+
+
+            .order-info h2 {
+                font-size: 18px;
+            }
+
+
+            .order-middle {
+                padding-left: 64px;
+            }
+
+
+            .logo {
+                font-size: 22px;
+            }
+
+
+            .logo span {
+                font-size: 29px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- NAVBAR -->
+
+    <nav class="navbar">
+
+        <a href="{% url 'home' %}" class="logo">
+            Fashion<span>Store</span>
+        </a>
+
+
+        <div class="nav-links">
+
+            <a href="{% url 'home' %}">
+                Home
+            </a>
+
+            <a href="{% url 'shop' %}?category=Women">
+                Women
+            </a>
+
+            <a href="{% url 'shop' %}?category=Men">
+                Men
+            </a>
+
+            <a href="{% url 'shop' %}?category=Accessories">
+                Accessories
+            </a>
+
+            <a href="{% url 'shop' %}">
+                Collection
+            </a>
+
+        </div>
+
+
+        <div class="nav-icons">
+
+            <a href="{% url 'wishlist' %}"
+               class="nav-icon">
+
+                ♡
+
+                {% if wishlist_count > 0 %}
+                    <span class="count">
+                        {{ wishlist_count }}
+                    </span>
+                {% endif %}
+
+            </a>
+
+
+            <a href="{% url 'cart' %}"
+               class="nav-icon">
+
+                🛍
+
+                {% if cart_count > 0 %}
+                    <span class="count">
+                        {{ cart_count }}
+                    </span>
+                {% endif %}
+
+            </a>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- HEADER -->
+
+    <header class="page-header">
+
+        <div class="eyebrow">
+            Your fashion journey ♡
+        </div>
+
+        <h1>
+            My Orders
+        </h1>
+
+        <p>
+            Keep track of your FashionStore purchases in one place.
+        </p>
+
+    </header>
+
+
+
+    <!-- ORDERS -->
+
+    <section class="orders-section">
+
+
+        {% if orders %}
+
+            <div class="orders-grid">
+
+                {% for order in orders %}
+
+                    <article class="order-card"
+                             style="animation-delay: {{ forloop.counter0 }}00ms;">
+
+
+                        <div class="order-left">
+
+                            <div class="order-icon">
+                                🛍
+                            </div>
+
+
+                            <div class="order-info">
+
+                                <h2>
+                                    Order #{{ order.id }}
+                                </h2>
+
+                                <div class="order-date">
+
+                                    {{ order.created_at|date:"d M Y" }}
+                                    &nbsp;·&nbsp;
+                                    {{ order.created_at|date:"h:i A" }}
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="order-middle">
+
+                            <div class="status">
+                                Order Confirmed
+                            </div>
+
+                            <div class="total-label">
+                                Order Total
+                            </div>
+
+                            <div class="total">
+                                ₹{{ order.total_amount }}
+                            </div>
+
+                        </div>
+
+
+
+                        <a href="{% url 'order_details' order.id %}"
+                           class="view-btn">
+
+                            View Details
+
+                        </a>
+
+
+                    </article>
+
+                {% endfor %}
+
+            </div>
+
+
+        {% else %}
+
+
+            <div class="empty-state">
+
+                <div class="empty-icon">
+                    🛍
+                </div>
+
+                <h2>
+                    No orders yet
+                </h2>
+
+                <p>
+                    Your future fashion finds will appear here.
+                </p>
+
+                <a href="{% url 'shop' %}"
+                   class="shop-btn">
+
+                    Start Shopping
+
+                </a>
+
+            </div>
+
+
+        {% endif %}
+
+
+    </section>
+
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <strong>FashionStore</strong>
+        &nbsp;·&nbsp;
+        Style that feels like you.
+
+        <br><br>
+
+        © 2026 FashionStore. All rights reserved.
+
+    </footer>
+
+
+</body>
+
+</html>
